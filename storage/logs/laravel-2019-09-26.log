@@ -1,0 +1,8 @@
+[2019-09-26 10:20:01] local.ERROR: Cannot use isset() on the result of an expression (you can use "null !== expression" instead) {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use isset() on the result of an expression (you can use \"null !== expression\" instead) at C:\\xampp\\htdocs\\HeroCar\\storage\\framework\\views\\fa09deb67148a1bc9addfc8da68107ed46908626.php:31)
+[stacktrace]
+#0 {main}
+"} 
+[2019-09-26 10:20:37] local.ERROR: Cannot use isset() on the result of an expression (you can use "null !== expression" instead) {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Cannot use isset() on the result of an expression (you can use \"null !== expression\" instead) at C:\\xampp\\htdocs\\HeroCar\\storage\\framework\\views\\fa09deb67148a1bc9addfc8da68107ed46908626.php:31)
+[stacktrace]
+#0 {main}
+"} 

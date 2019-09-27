@@ -1,0 +1,303 @@
+<?php if(!empty($user->id)): ?>
+<input type="hidden" name="id" value="<?php echo $user->id; ?>">
+<?php endif; ?>
+<?php
+$type = !empty($user->id) ? old('typeofuser', $user->TypeOfUser) : old('typeofuser', '');
+$name = !empty($user->id) ? old('name', $user->name) : old('name', '');
+$email = !empty($user->id) ? old('email', $user->email) : old('email', '');
+$phone1 = !empty($user->id) ? old('phone1', $user->phone1) : old('phone1', '');
+$phone2 = !empty($user->id) ? old('phone2', $user->phone2) : old('phone2', '');
+$address1 = !empty($user->id) ? old('address1', $user->address1) : old('address1', '');
+
+$road1 = !empty($user->id) ? old('road', $user->road1) : old('road1', '');
+$subdistrict1 = !empty($user->id) ? old('subdistrict1', $user['subdistrict1']) : old('subdistrict1', '');
+$district1 = !empty($user->id) ? old('district1', $user->district1) : old('district1', '');
+$province1 = !empty($user->id) ? old('province1', $user->province1) : old('province1', '');
+$zipcode1 = !empty($user->id) ? old('zipcode1', $user->zipcode1) : old('zipcode1', '');
+
+
+$address2 = !empty($user->id) ? old('address2', $user->address2) : old('address2', '');
+$road2 = !empty($user->id) ? old('road', $user->road2) : old('road2', '');
+$subdistrict2 = !empty($user->id) ? old('subdistrict2', $user['subdistrict2']) : old('subdistrict2', '');
+$district2 = !empty($user->id) ? old('district2', $user->district1) : old('district2', '');
+$province2 = !empty($user->id) ? old('province2', $user->province2) : old('province2', '');
+$zipcode2 = !empty($user->id) ? old('zipcode2', $user->zipcode2) : old('zipcode2', '');
+$typeofuser = !empty($user->id) ? old('typeofuser', $user->zipcode2) : old('zipcode2', '');
+$status = '';
+$password = '';
+?>
+<?php if(!empty($user->id)): ?>
+<form action="<?php echo e(route( 'users.update',$user)); ?>" method="post" class="form-horizontal">
+    <?php echo e(method_field('PUT')); ?>
+
+    <?php else: ?>
+    <form action="<?php echo route('users.store'); ?>" method="post" class="form-horizontal">
+        <?php endif; ?>
+        <?php echo csrf_field(); ?>
+
+
+        <div class="form-group row">
+            <label class="col-md-1 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.email'); ?> : </label>
+            <div class="col-sm-5">
+                <input type="email" class="form-control" name="email" value="<?php echo $email; ?>">
+            </div>
+            
+            <?php if(Auth::user()->typeofuser_1->name != 'user'): ?>
+            <label class="col-md-1 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.type'); ?> : </label>
+            <div class="col-sm-5">
+                <select class="form-control" name="typeofuser" id="typeofuser">
+                    <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
+                    <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo $key; ?>"  <?php echo $user->typeofuser == $key ? 'selected' : ''; ?>><?php echo $value; ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+            </div>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-1 col-form-label <?php echo empty($user->id) ? 'text-required' : ''; ?>"><?php echo app('translator')->getFromJson('logs.password'); ?> : </label>
+            <div class="col-sm-5">
+                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+            </div>
+
+            <label class="col-md-1 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.name'); ?> : </label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="name" value="<?php echo $name; ?>">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <br/>
+                <h3><?php echo app('translator')->getFromJson('logs.addressuser'); ?></h3>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.phone'); ?> : </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="phone1" value="<?php echo $phone1; ?>">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.address'); ?> : </label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="address1" rows="3"><?php echo $address1; ?></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.road'); ?> : </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="road1" value="<?php echo $road1; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.pro'); ?> : </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" required id="province1" name="province1">
+                                    <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
+                                    <?php $__currentLoopData = $provinces; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option  value="<?php echo $value->name_th; ?>" <?php echo $user->province1 == $value->name_th ? 'selected' : ''; ?>><?php echo $value->name_th; ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.dis'); ?> : </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" required id="district1" name="district1">
+                                    <?php if($district1 == null): ?>
+                                    <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
+                                    <?php else: ?>
+                                    <option value="<?php echo $district1; ?>" selected><?php echo $district1; ?></option>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.subdis'); ?> : </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" required id="subdistrict1" name="subdistrict1">
+                                    <?php if($subdistrict1 == null): ?>
+                                    <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
+                                    <?php else: ?>
+                                    <option  value="<?php echo $subdistrict1; ?>" selected><?php echo $subdistrict1; ?></option>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.zip'); ?> : </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" required id="zipcode1" name="zipcode1" value="<?php echo $zipcode1; ?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <br/>
+                <h3><?php echo app('translator')->getFromJson('logs.addresspresent'); ?></h3>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.phone'); ?> : </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="phone2" value="<?php echo $phone2; ?>">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="10" class="control-label col-md-2 text-required"><?php echo app('translator')->getFromJson('logs.address'); ?> : </label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="address2" rows="3"><?php echo $address2; ?></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.road'); ?> : </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="road2" value="<?php echo $road2; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.pro'); ?> : </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" required id="province2" name="province2">
+                                    <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
+                                    <?php $__currentLoopData = $provinces; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option  value="<?php echo $value->name_th; ?>" <?php echo $user->province2 == $value->name_th ? 'selected' : ''; ?>><?php echo $value->name_th; ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.dis'); ?> : </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" required id="district2" name="district2">
+                                    <?php if($district2 == null): ?>
+                                    <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
+                                    <?php else: ?>
+                                    <option value="<?php echo $district2; ?>" selected><?php echo $district2; ?></option>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.subdis'); ?> : </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" required id="subdistrict2" name="subdistrict2">
+                                    <?php if($subdistrict2 == null): ?>
+                                    <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
+                                    <?php else: ?>
+                                    <option  value="<?php echo $subdistrict2; ?>" selected><?php echo $subdistrict2; ?></option>
+                                    <?php endif; ?>
+                                </select>  
+                            </div>
+                        </div>    
+                        <div class="form-group row">
+                            <label for="10" class="col-md-2 col-form-label text-required"><?php echo app('translator')->getFromJson('logs.zip'); ?> : </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" required name="zipcode2" id="zipcode2" value="<?php echo $zipcode2; ?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="pull-right">
+                <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;<?php echo app('translator')->getFromJson('logs.cancle'); ?></button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>&nbsp;<?php echo app('translator')->getFromJson('logs.save'); ?></button>
+            </div>
+        </div>
+
+    </form>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#subdistrict1').change(function () {
+                $('#zipcode1').val($(this).find(':selected').data('zip'));
+            });
+            $('#subdistrict2').change(function () {
+                $('#zipcode2').val($(this).find(':selected').data('zip'));
+            });
+            $('#province1').change(function () {
+                $.ajax({
+                    method: "GET",
+                    url: "<?php echo e(route('get_amphures')); ?>",
+                    data: {
+                        province: $("#province1").val(),
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        data.forEach(function (element) {
+                            $('#district1').append(
+                                    "<option value='" + element.name_th + "'>" + element.name_th + "</option>"
+                                    )
+                        });
+                    }
+                });
+            });
+            $('#province2').change(function () {
+                $.ajax({
+                    method: "GET",
+                    url: "<?php echo e(route('get_amphures')); ?>",
+                    data: {
+                        province: $("#province2").val(),
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        data.forEach(function (element) {
+                            $('#district2').append(
+                                    "<option value='" + element.name_th + "'>" + element.name_th + "</option>"
+                                    )
+                        });
+                    }
+                });
+            });
+            $('#district1').change(function () {
+                $.ajax({
+                    method: "GET",
+                    url: "<?php echo e(route('get_dis')); ?>",
+                    data: {
+                        district: $("#district1").val(),
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        data.forEach(function (element) {
+                            $('#subdistrict1').append(
+                                    "<option  data-zip='" + element.zip_code + "' value='" + element.name_th + "'>" + element.name_th + "</option>"
+                                    )
+                        });
+                    }
+                });
+            });
+            $('#district2').change(function () {
+                $.ajax({
+                    method: "GET",
+                    url: "<?php echo e(route('get_dis')); ?>",
+                    data: {
+                        district: $("#district2").val(),
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        data.forEach(function (element) {
+                            $('#subdistrict2').append(
+                                    "<option  data-zip='" + element.zip_code + "' value='" + element.name_th + "'>" + element.name_th + "</option>"
+                                    )
+                        });
+                    }
+                });
+            });
+
+        });
+
+
+    </script><?php /**PATH C:\xampp\htdocs\educationhero\resources\views/users/_form.blade.php ENDPATH**/ ?>

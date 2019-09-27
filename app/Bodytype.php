@@ -1,0 +1,11 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Bodytype extends Model
+{
+    protected $table = 'bodytype';
+    protected $fillable = ['name','image'];
+}
