@@ -36,7 +36,11 @@
                                     @if(isset($solds))
                                         @foreach($solds as $sold)
                                             <tr>
-                                                <td><button class="btn btn-sm btn-rounded btn-outline-primary">รายละเอียด</button></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-rounded btn-outline-primary">
+                                                        รายละเอียด
+                                                    </button>
+                                                </td>
                                                 <td>{{ $sold->id }}</td>
                                                 <td>{{ $sold->licenseno }}</td>
                                                 <td>{{ $sold->getNameMake->name }}</td>
@@ -46,21 +50,28 @@
                                                 <td>{{ number_format($sold->price) }}</td>
                                                 <td>
                                                     @if($sold->status == 0)
-                                                        <button class="btn btn-primary btn-sm">Active</button>
+                                                        <button class="btn btn-warning btn-sm">Pending</button>
                                                     @endif
                                                     @if($sold->status == 1)
-                                                        <button class="btn btn-success btn-sm">Sold Out</button>
+                                                        <button class="btn btn-success btn-sm">Active</button>
                                                     @endif
                                                     @if($sold->status == 2)
+                                                        <button class="btn btn-primary btn-sm">Sold</button>
+                                                    @endif
+                                                    @if($sold->status == 3)
                                                         <button class="btn btn-danger btn-sm">Cancel</button>
                                                     @endif
                                                 </td>
                                                 <td>{{ $sold->created_at }}</td>
                                                 <td>{{ $sold->updated_at }}</td>
                                                 <td>
-                                                    @if($sold->status == 0)
-                                                    <button class="btn btn-rounded btn-sm btn-outline-secondary">แก้ไข</button>
-                                                    <button class="btn btn-rounded btn-sm btn-outline-danger" onclick="solddelete({{ $sold->id }});">ลบ</button>
+                                                    @if($sold->status == 0 || $sold->status == 1)
+                                                        <button class="btn btn-rounded btn-sm btn-outline-secondary">
+                                                            แก้ไข
+                                                        </button>
+                                                        <button class="btn btn-rounded btn-sm btn-outline-danger"
+                                                                onclick="solddelete({{ $sold->id }});">ลบ
+                                                        </button>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -90,7 +101,7 @@
                     closeOnConfirm: false,
                     closeOnCancel: false,
                 },
-                function(isConfirm) {
+                function (isConfirm) {
                     if (isConfirm) {
                         $.ajaxSetup({
                             headers: {
@@ -99,9 +110,9 @@
                         });
                         $.ajax({
                             url: "{{ url('sold/delete') }}",
-                            data: {id:id},
+                            data: {id: id},
                             type: 'POST',
-                            success:function () {
+                            success: function () {
                                 swal({
                                     title: 'ลบเรียบร้อยแล้ว!',
                                     type: 'success',

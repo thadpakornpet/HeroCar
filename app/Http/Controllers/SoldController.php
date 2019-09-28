@@ -108,7 +108,7 @@ class SoldController extends Controller
     public function delete(Request $request)
     {
         $sold = Sold::where('id',$request->input('id'))->first();
-        $sold->status = 2;
+        $sold->status = 3;
         $sold->save();
     }
 }

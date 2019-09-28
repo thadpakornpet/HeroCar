@@ -35,7 +35,11 @@
                                     <?php if(isset($solds)): ?>
                                         <?php $__currentLoopData = $solds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sold): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td><button class="btn btn-sm btn-rounded btn-outline-primary">รายละเอียด</button></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-rounded btn-outline-primary">
+                                                        รายละเอียด
+                                                    </button>
+                                                </td>
                                                 <td><?php echo e($sold->id); ?></td>
                                                 <td><?php echo e($sold->licenseno); ?></td>
                                                 <td><?php echo e($sold->getNameMake->name); ?></td>
@@ -45,21 +49,28 @@
                                                 <td><?php echo e(number_format($sold->price)); ?></td>
                                                 <td>
                                                     <?php if($sold->status == 0): ?>
-                                                        <button class="btn btn-primary btn-sm">Active</button>
+                                                        <button class="btn btn-warning btn-sm">Pending</button>
                                                     <?php endif; ?>
                                                     <?php if($sold->status == 1): ?>
-                                                        <button class="btn btn-success btn-sm">Sold Out</button>
+                                                        <button class="btn btn-success btn-sm">Active</button>
                                                     <?php endif; ?>
                                                     <?php if($sold->status == 2): ?>
+                                                        <button class="btn btn-primary btn-sm">Sold</button>
+                                                    <?php endif; ?>
+                                                    <?php if($sold->status == 3): ?>
                                                         <button class="btn btn-danger btn-sm">Cancel</button>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td><?php echo e($sold->created_at); ?></td>
                                                 <td><?php echo e($sold->updated_at); ?></td>
                                                 <td>
-                                                    <?php if($sold->status == 0): ?>
-                                                    <button class="btn btn-rounded btn-sm btn-outline-secondary">แก้ไข</button>
-                                                    <button class="btn btn-rounded btn-sm btn-outline-danger" onclick="solddelete(<?php echo e($sold->id); ?>);">ลบ</button>
+                                                    <?php if($sold->status == 0 || $sold->status == 1): ?>
+                                                        <button class="btn btn-rounded btn-sm btn-outline-secondary">
+                                                            แก้ไข
+                                                        </button>
+                                                        <button class="btn btn-rounded btn-sm btn-outline-danger"
+                                                                onclick="solddelete(<?php echo e($sold->id); ?>);">ลบ
+                                                        </button>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
@@ -89,7 +100,7 @@
                     closeOnConfirm: false,
                     closeOnCancel: false,
                 },
-                function(isConfirm) {
+                function (isConfirm) {
                     if (isConfirm) {
                         $.ajaxSetup({
                             headers: {
@@ -98,9 +109,9 @@
                         });
                         $.ajax({
                             url: "<?php echo e(url('sold/delete')); ?>",
-                            data: {id:id},
+                            data: {id: id},
                             type: 'POST',
-                            success:function () {
+                            success: function () {
                                 swal({
                                     title: 'ลบเรียบร้อยแล้ว!',
                                     type: 'success',
