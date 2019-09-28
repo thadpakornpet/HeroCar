@@ -28,12 +28,6 @@
                                 <strong><?php echo app('translator')->getFromJson('login.pleaselogin'); ?></strong>
                             </h4>
                             <br />
-                            <?php if(isset($_COOKIE('TokenExpires'))): ?>
-                            <font color='red'>Token Expired</font>
-                            <?php
-                            unset($_COOKIE['TokenExpires']);
-                            ?>
-                            <?php endif; ?>
                             <form id="form-validation" name="form-validation" method="POST" action="<?php echo e(route('login')); ?>">
                                 <?php echo csrf_field(); ?>
                                 <div class="form-group">

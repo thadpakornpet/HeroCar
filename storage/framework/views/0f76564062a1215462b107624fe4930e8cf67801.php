@@ -104,10 +104,10 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="ชื่อรูปแบบ" name="name" required/>
+                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อรูปแบบ" name="name" required/>
                 </div>
                 <div class="form-group">
-                    <input type="file" class="form-control" name="image" required/>
+                    <input type="file" class="form-control" style="font-family: 'Pridi', serif;" name="image" required/>
                 </div>
             </div>
             <div class="modal-footer">

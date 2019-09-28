@@ -6,5 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sold extends Model
 {
-    protected $table = 'sold';
+    protected $table = 'soldcar';
+
+    protected $fillable = ['id','makeid','modelid','licenseno','countryid','bodyid','tranmisstionid','drivetypeid','enginetypeid','fueltype','colorid','year','miles','price','soldnote','userid','status'];
+
+    public function getNameMake(){
+        return $this->hasOne('App\Make', 'id','makeid');
+    }
+
+    public function getNameModel(){
+        return $this->hasOne('App\Models','id','modelid');
+    }
+
+    public function getNameBodyType(){
+        return $this->hasOne('App\Bodytype','id','bodyid');
+    }
+
+    public function getNameCountry(){
+        return $this->hasOne('App\Country','id','countryid');
+    }
+
+    public function getNameEngine(){
+        return $this->hasOne('App\Engine','id','enginetypeid');
+    }
 }

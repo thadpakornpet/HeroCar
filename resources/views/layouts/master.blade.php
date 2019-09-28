@@ -95,9 +95,7 @@
         <script src="{{ URL::asset('cleanui/components/menu-left/common/menu-left.cleanui.js') }}"></script>
         <script src="{{ URL::asset('cleanui/components/blog/common/blog.cleanui.js') }}"></script>
         <script src="{{ URL::asset('cleanui/components/github/common/github.cleanui.js') }}"></script>
-
         @yield('style')
-
         <!-- PRELOADER STYLES-->
         <style>
             html,body {
@@ -276,12 +274,12 @@
                             </a>
                             <ul class="cui-menu-left-list">
                                 <li class="cui-menu-left-item">
-                                    <a href="javascript: void(0);" data-toggle="modal" data-target="#notive">
+                                    <a href="{{ url('/sold') }}">
                                         <span class="cui-menu-left-title">เพิ่มประกาศ</span>
                                     </a>
                                 </li>
                                 <li class="cui-menu-left-item">
-                                    <a href="#">
+                                    <a href="{{ url('sold/list') }}">
                                         <span class="cui-menu-left-title">จัดการประกาศ</span>
                                     </a>
                                 </li>
@@ -489,129 +487,6 @@
                 </form>
             </div>
         </div>
-
-
-        @role('owner')
-        <div
-            class="modal fade modal-size-large"
-            id="notive"
-            tabindex="-1"
-            role="dialog"
-            aria-hidden="true"
-            >
-            <div class="modal-dialog" role="document">
-                <form action="{{ url('/sold') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>ประกาศขายรถ</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-
-                          <div class="form-group">
-                            <div class="row">
-                              <div class="col-md-4">
-                                <label>ยี่ห้อ :</label>
-                                <select class="form-control" name="type" required>
-                                    <option value="" disabled selected>--@lang('logs.select')--</option>
-                                </select>
-                              </div>
-                              <div class="col-md-4">
-                                <label>รุ่นรถ :</label>
-                                <select class="form-control" name="type" required>
-                                    <option value="" disabled selected>--@lang('logs.select')--</option>
-                                </select>
-                              </div>
-                              <div class="col-md-4">
-                                <label>ประเทศผลิต :</label>
-                                <select class="form-control" name="type" required>
-                                    <option value="" disabled selected>--@lang('logs.select')--</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="form-group">
-                            <div class="row">
-                              <div class="col-md-4">
-                                <label>รูปแบบรถ :</label>
-                                <select class="form-control" name="type" required>
-                                    <option value="" disabled selected>--@lang('logs.select')--</option>
-                                </select>
-                              </div>
-                              <div class="col-md-4">
-                                <label>ระบบเกียร์ :</label>
-                                <select class="form-control" name="type" required>
-                                    <option value="" disabled selected>--@lang('logs.select')--</option>
-                                </select>
-                              </div>
-                              <div class="col-md-4">
-                                <label>ขับเคลื่อน :</label>
-                                <select class="form-control" name="type" required>
-                                    <option value="" disabled selected>--@lang('logs.select')--</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="form-group">
-                            <div class="row">
-                              <div class="col-md-4">
-                                <label>เครื่องยน :</label>
-                                <select class="form-control" name="type" required>
-                                    <option value="" disabled selected>--@lang('logs.select')--</option>
-                                </select>
-                              </div>
-                              <div class="col-md-4">
-                                <label>เชื้อเพลิง :</label>
-                                <select class="form-control" name="type" required>
-                                    <option value="" disabled selected>--@lang('logs.select')--</option>
-                                </select>
-                              </div>
-                              <div class="col-md-4">
-                                <label>สี :</label>
-                                <select class="form-control" name="type" required>
-                                    <option value="" disabled selected>--@lang('logs.select')--</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="form-group">
-                            <div class="row">
-                              <div class="col-md-3">
-                                <label>ทะเบียนรถ :</label>
-                                <input type="text" class="form-control" name="" required>
-                              </div>
-                              <div class="col-md-3">
-                                <label>ปีรถ :</label>
-                                <input type="text" class="form-control" name="" required>
-                              </div>
-                              <div class="col-md-3">
-                                <label>ระยะไมล์ :</label>
-                                <input type="text" class="form-control" name="" required>
-                              </div>
-                              <div class="col-md-3">
-                                <label>ราคา :</label>
-                                <input type="text" class="form-control" name="" required>
-                              </div>
-                            </div>
-                          </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn width-200 btn-primary">
-                                <i class="fa fa-send mr-2"></i> ลงทะเบียนประกาศ
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        @endrole
 
         @yield('script')
 

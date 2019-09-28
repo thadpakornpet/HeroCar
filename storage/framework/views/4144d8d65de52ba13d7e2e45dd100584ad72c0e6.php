@@ -118,11 +118,11 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="">ชื่อยี่ห้อ</label>
-                    <input type="text" class="form-control" placeholder="ชื่อยี่ห้อ" name="name" required/>
+                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อยี่ห้อ" name="name" required/>
                 </div>
                 <div class="form-group">
                         <label for="">ประเทศ</label>
-                    <select name="country_id" class="form-control" required>
+                    <select name="country_id" style="font-family: 'Pridi', serif;" class="form-control" required>
                         <?php $__currentLoopData = $country; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <option value="<?php echo e($c->id); ?>"><?php echo e($c->name); ?></option>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
