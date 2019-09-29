@@ -23,7 +23,17 @@ class SoldController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:owner', 'permission:ALL-Plivilege'])->except(['infomodel', 'infobodytype']);
+        $this->middleware(['role:owner', 'permission:ALL-Plivilege'])->except(['infomodel', 'infobodytype','list','detail','manage']);
+    }
+
+    public function manage(Request $request){
+        if(Auth::user()->hasRole('super')){
+            $sold = Sold::where('id',$request->input('a'))->first();
+            $sold->status = $request->input('b');
+            $sold->save();
+        } else {
+            return false;
+        }
     }
 
     public function index()
@@ -132,8 +142,13 @@ class SoldController extends Controller
 
     public function list()
     {
-        return view('sold.list', [
-            'solds' => Sold::orderBy('id', 'DESC')->where('userid', Auth::user()->id)->get()
+        if(Auth::user()->hasRole('super')){
+            $sold = Sold::orderBy('id', 'DESC')->where('status', 0)->get();
+        } else {
+            $sold = Sold::orderBy('id', 'DESC')->where('userid', Auth::user()->id)->get();
+        }
+        return view('sold.list',[
+            'solds' => $sold
         ]);
     }
 

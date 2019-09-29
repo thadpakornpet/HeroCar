@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Sold;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->share(['mailusers' => \App\User::all(), 'typeofusers' => \App\Roles::all()]);
+        view()->share(['mailusers' => \App\User::all(), 'typeofusers' => \App\Roles::all(), 'soldcount' => Sold::where('status', 0)->count()]);
     }
 }

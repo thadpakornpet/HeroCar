@@ -52,7 +52,10 @@
                                         <button class="btn btn-primary btn-sm">Sold</button>
                                     <?php endif; ?>
                                     <?php if($sold->status == 3): ?>
-                                        <button class="btn btn-danger btn-sm">Cancel</button>
+                                        <button class="btn btn-secondary btn-sm">Cancel</button>
+                                    <?php endif; ?>
+                                    <?php if($sold->status == 4): ?>
+                                        <button class="btn btn-danger btn-sm">Reject</button>
                                     <?php endif; ?>
                                 </li>
                             </ul>

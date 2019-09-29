@@ -125,7 +125,7 @@
                 <legend class="w-auto">รูปภาพของรถ</legend>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
+                        <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple required/>
                     </div>
                 </div>
                 <div class="form-group">

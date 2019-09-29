@@ -83,6 +83,8 @@ Route::group(['middleware' => ['CheckLoginRepeat', 'auth']], function (){
   Route::post('/model/edit', 'TablesController@modelsave');
   Route::group(['prefix' => 'sold'],function (){
       Route::get('/', 'SoldController@index');
+      Route::get('/manage', 'SoldController@list');
+      Route::post('/approve', 'SoldController@manage');
       Route::post('/', 'SoldController@sold');
       Route::get('/list', 'SoldController@list');
       Route::post('/delete', 'SoldController@delete');

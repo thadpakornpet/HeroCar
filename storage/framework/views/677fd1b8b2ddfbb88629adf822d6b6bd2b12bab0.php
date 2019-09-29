@@ -58,12 +58,16 @@
                                                         <button class="btn btn-primary btn-sm">Sold</button>
                                                     <?php endif; ?>
                                                     <?php if($sold->status == 3): ?>
-                                                        <button class="btn btn-danger btn-sm">Cancel</button>
+                                                        <button class="btn btn-secondary btn-sm">Cancel</button>
                                                     <?php endif; ?>
+                                                        <?php if($sold->status == 4): ?>
+                                                            <button class="btn btn-danger btn-sm">Reject</button>
+                                                        <?php endif; ?>
                                                 </td>
                                                 <td><?php echo e($sold->created_at); ?></td>
                                                 <td><?php echo e($sold->updated_at); ?></td>
                                                 <td>
+                                                    <?php if(auth()->check() && auth()->user()->hasRole('owner')): ?>
                                                     <?php if($sold->status == 0 || $sold->status == 1): ?>
                                                         <button class="btn btn-rounded btn-sm btn-outline-secondary" onclick="soldedit(<?php echo e($sold->id); ?>);">
                                                             แก้ไข
@@ -71,6 +75,18 @@
                                                         <button class="btn btn-rounded btn-sm btn-outline-danger"
                                                                 onclick="solddelete(<?php echo e($sold->id); ?>);">ลบ
                                                         </button>
+                                                    <?php endif; ?>
+                                                    <?php endif; ?>
+                                                    <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
+                                                    <button class="btn btn-rounded btn-sm btn-outline-success" onclick="approve(<?php echo e($sold->id); ?>,1);">
+                                                        อนุมัติ
+                                                    </button>
+                                                    <button class="btn btn-rounded btn-sm btn-outline-warning" onclick="approve(<?php echo e($sold->id); ?>,4);">
+                                                        ไม่อนุมัติ
+                                                    </button>
+                                                    <button class="btn btn-rounded btn-sm btn-outline-danger"
+                                                            onclick="solddelete(<?php echo e($sold->id); ?>);">ลบ
+                                                    </button>
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
@@ -88,6 +104,58 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
     <script>
+        <?php if(Auth::user()->hasRole('super')): ?>
+        function approve(a,b) {
+            swal(
+                {
+                    title: 'ต้องการดำเนินการ?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn-danger',
+                    confirmButtonText: 'ยืนยัน',
+                    cancelButtonText: 'ยกเลิก',
+                    closeOnConfirm: false,
+                    closeOnCancel: false,
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "<?php echo e(url('sold/approve')); ?>",
+                            data: {a: a,b:b},
+                            type: 'POST',
+                            success: function () {
+                                swal({
+                                    title: 'ดำเนินการเรียบร้อยแล้ว!',
+                                    type: 'success',
+                                    confirmButtonClass: 'btn-success',
+                                });
+                                window.location.reload();
+                            },
+                            error: function () {
+                                swal({
+                                    title: 'เกิดข้อผิดพลาด ไม่อนุญาตทำรายการ',
+                                    type: 'error',
+                                    confirmButtonClass: 'btn-danger',
+                                })
+                            }
+                        })
+                    } else {
+                        swal({
+                            title: 'ดำเนินการล้มเหลว',
+                            type: 'error',
+                            confirmButtonClass: 'btn-danger',
+                        })
+                    }
+                },
+            )
+        }
+        <?php endif; ?>
+        ;
         function soldedit(id) {
             if(id){
                 window.location = "<?php echo e(url('sold/edit')); ?>" + '/' +id;
@@ -102,7 +170,11 @@
         ;
         function getinfo(id) {
             if(id){
+                <?php if(Auth::user()->hasRole('super')): ?>
+                window.open("<?php echo e(url('sold/detail')); ?>" + '/' +id, '_blank');
+                <?php else: ?>
                 window.location = "<?php echo e(url('sold/detail')); ?>" + '/' +id;
+                <?php endif; ?>
             } else {
                 swal({
                     title: 'ไม่พบข้อมูล',

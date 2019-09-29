@@ -59,12 +59,16 @@
                                                         <button class="btn btn-primary btn-sm">Sold</button>
                                                     @endif
                                                     @if($sold->status == 3)
-                                                        <button class="btn btn-danger btn-sm">Cancel</button>
+                                                        <button class="btn btn-secondary btn-sm">Cancel</button>
                                                     @endif
+                                                        @if($sold->status == 4)
+                                                            <button class="btn btn-danger btn-sm">Reject</button>
+                                                        @endif
                                                 </td>
                                                 <td>{{ $sold->created_at }}</td>
                                                 <td>{{ $sold->updated_at }}</td>
                                                 <td>
+                                                    @role('owner')
                                                     @if($sold->status == 0 || $sold->status == 1)
                                                         <button class="btn btn-rounded btn-sm btn-outline-secondary" onclick="soldedit({{ $sold->id }});">
                                                             แก้ไข
@@ -73,6 +77,18 @@
                                                                 onclick="solddelete({{ $sold->id }});">ลบ
                                                         </button>
                                                     @endif
+                                                    @endrole
+                                                    @role('super')
+                                                    <button class="btn btn-rounded btn-sm btn-outline-success" onclick="approve({{ $sold->id }},1);">
+                                                        อนุมัติ
+                                                    </button>
+                                                    <button class="btn btn-rounded btn-sm btn-outline-warning" onclick="approve({{ $sold->id }},4);">
+                                                        ไม่อนุมัติ
+                                                    </button>
+                                                    <button class="btn btn-rounded btn-sm btn-outline-danger"
+                                                            onclick="solddelete({{ $sold->id }});">ลบ
+                                                    </button>
+                                                    @endrole
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -89,6 +105,58 @@
 @endsection
 @section('script')
     <script>
+        @if(Auth::user()->hasRole('super'))
+        function approve(a,b) {
+            swal(
+                {
+                    title: 'ต้องการดำเนินการ?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn-danger',
+                    confirmButtonText: 'ยืนยัน',
+                    cancelButtonText: 'ยกเลิก',
+                    closeOnConfirm: false,
+                    closeOnCancel: false,
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "{{ url('sold/approve') }}",
+                            data: {a: a,b:b},
+                            type: 'POST',
+                            success: function () {
+                                swal({
+                                    title: 'ดำเนินการเรียบร้อยแล้ว!',
+                                    type: 'success',
+                                    confirmButtonClass: 'btn-success',
+                                });
+                                window.location.reload();
+                            },
+                            error: function () {
+                                swal({
+                                    title: 'เกิดข้อผิดพลาด ไม่อนุญาตทำรายการ',
+                                    type: 'error',
+                                    confirmButtonClass: 'btn-danger',
+                                })
+                            }
+                        })
+                    } else {
+                        swal({
+                            title: 'ดำเนินการล้มเหลว',
+                            type: 'error',
+                            confirmButtonClass: 'btn-danger',
+                        })
+                    }
+                },
+            )
+        }
+        @endif
+        ;
         function soldedit(id) {
             if(id){
                 window.location = "{{ url('sold/edit') }}" + '/' +id;
@@ -103,7 +171,11 @@
         ;
         function getinfo(id) {
             if(id){
+                @if(Auth::user()->hasRole('super'))
+                window.open("{{ url('sold/detail') }}" + '/' +id, '_blank');
+                @else
                 window.location = "{{ url('sold/detail') }}" + '/' +id;
+                @endif
             } else {
                 swal({
                     title: 'ไม่พบข้อมูล',

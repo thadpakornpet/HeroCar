@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Sold;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,6 @@ class HomeController extends Controller
     public function index(){
         request()->session()->forget('menu');
         request()->session()->put('menu','dashboard');
-        
         return view('home');
     }
 }
