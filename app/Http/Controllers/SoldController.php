@@ -17,6 +17,7 @@ use App\Transmission;
 use Illuminate\Http\Request;
 use Auth;
 use File;
+use Image;
 
 class SoldController extends Controller
 {
@@ -112,9 +113,16 @@ class SoldController extends Controller
                 $filename = time() . str_random(10) . '.' . $request->file('upload_file')[$i]->getClientOriginalExtension();
                 $request->file('upload_file')[$i]->move(public_path() . '/imgcar/', $filename);
                 chmod(public_path() . '/imgcar/' . $filename, 0777);
+
+                $img = Image::make(public_path('imgcar/'.$filename));
+                $img->insert(public_path('Capture.PNG'), 'bottom-right', 10, 10);
+                $img->save(public_path('imgcar/new'.$filename));
+                chmod(public_path() . '/imgcar/new' . $filename, 0777);
+                File::delete(public_path() . '\\imgcar\\' . $filename);
+
                 SoldImage::create([
                     'soldid' => $id,
-                    'image' => $filename
+                    'image' => 'new'.$filename
                 ]);
             }
         }
@@ -139,7 +147,7 @@ class SoldController extends Controller
     public function deleteimg(Request $request)
     {
         $img = SoldImage::find($request->input('id'));
-        File::delete(public_path() . 'imgcar/' . $img->image);
+        File::delete(public_path() . '\\imgcar\\' . $img->image);
         $img->delete();
     }
 
@@ -186,9 +194,15 @@ class SoldController extends Controller
                 $filename = time() . str_random(10) . '.' . $request->file('upload_file')[$i]->getClientOriginalExtension();
                 $request->file('upload_file')[$i]->move(public_path() . '/imgcar/', $filename);
                 chmod(public_path() . '/imgcar/' . $filename, 0777);
+
+                $img = Image::make(public_path('imgcar/'.$filename));
+                $img->insert(public_path('Capture.PNG'), 'bottom-right', 10, 10);
+                $img->save(public_path('imgcar/new'.$filename));
+                chmod(public_path() . '/imgcar/new' . $filename, 0777);
+                File::delete(public_path() . '\\imgcar\\' . $filename);
                 SoldImage::create([
                     'soldid' => $request->input('id'),
-                    'image' => $filename
+                    'image' => 'new'.$filename
                 ]);
             }
         }
