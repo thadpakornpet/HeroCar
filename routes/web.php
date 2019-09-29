@@ -40,53 +40,55 @@ Route::group(['middleware' => ['CheckLoginRepeat', 'auth']], function (){
   Route::resource('/users', 'UserController');
   Route::post('/users/roles', 'UserController@roles');
   Route::resource('/logs', 'Logscontroller');
-  Route::get('/mails', 'MailsController@index');
-  Route::post('/mails', 'MailsController@send');
-  Route::get('/mails/getDownload/{id}', 'MailsController@getDownload');
-  Route::get('/mails/inbox/{id}', 'MailsController@inbox');
+  Route::group(['prefix' => 'mails'], function (){
+      Route::get('/', 'MailsController@index');
+      Route::post('/', 'MailsController@send');
+      Route::get('/getDownload/{id}', 'MailsController@getDownload');
+      Route::get('/inbox/{id}', 'MailsController@inbox');
+  });
   Route::post('/tasks/updated', 'TasksController@updated');
   Route::post('/tasks/delete', 'TasksController@delete');
   Route::post('/invite', 'UserController@invite');
-
-  Route::get('/tables/country', 'TablesController@country');
-  Route::get('/tables/body', 'TablesController@body');
-  Route::post('/tables/country/delete', 'TablesController@countrydelete');
+  Route::group(['prefix' => 'tables'], function (){
+      Route::get('/country', 'TablesController@country');
+      Route::get('/body', 'TablesController@body');
+      Route::post('/country/delete', 'TablesController@countrydelete');
+      Route::get('/country/{id}/edit', 'TablesController@countryedit');
+      Route::get('/body', 'TablesController@body');
+      Route::post('/body/delete', 'TablesController@bodydelete');
+      Route::get('/body/{id}/edit', 'TablesController@bodyedit');
+      Route::get('/color', 'TablesController@color');
+      Route::post('/color/delete', 'TablesController@colordelete');
+      Route::get('/color/{id}/edit', 'TablesController@coloredit');
+      Route::get('/drive', 'TablesController@drive');
+      Route::get('/engine', 'TablesController@engine');
+      Route::get('/fuel', 'TablesController@fuel');
+      Route::get('/make', 'TablesController@make');
+      Route::get('/make/{id}/edit', 'TablesController@makeedit');
+      Route::post('/make/delete', 'TablesController@makedelete');
+      Route::get('/model', 'TablesController@model');
+      Route::post('/model/delete', 'TablesController@modeldelete');
+      Route::get('/model/{id}/edit', 'TablesController@modeledit');
+      Route::get('/trans', 'TablesController@trans');
+  });
   Route::post('/country/create', 'TablesController@countrycreate');
-  Route::get('/tables/country/{id}/edit', 'TablesController@countryedit');
   Route::post('/country/edit', 'TablesController@countrysave');
-
-  Route::get('/tables/body', 'TablesController@body');
-  Route::post('/tables/body/delete', 'TablesController@bodydelete');
   Route::post('/body/create', 'TablesController@bodycreate');
-  Route::get('/tables/body/{id}/edit', 'TablesController@bodyedit');
   Route::post('/body/edit', 'TablesController@bodysave');
-
-  Route::get('/tables/color', 'TablesController@color');
-  Route::post('/tables/color/delete', 'TablesController@colordelete');
   Route::post('/color/create', 'TablesController@colorcreate');
-  Route::get('/tables/color/{id}/edit', 'TablesController@coloredit');
   Route::post('/color/edit', 'TablesController@colorsave');
-
-  Route::get('/tables/drive', 'TablesController@drive');
-  Route::get('/tables/engine', 'TablesController@engine');
-  Route::get('/tables/fuel', 'TablesController@fuel');
-
-  Route::get('/tables/make', 'TablesController@make');
   Route::post('/make/create', 'TablesController@makecreate');
-  Route::get('/tables/make/{id}/edit', 'TablesController@makeedit');
   Route::post('/make/edit', 'TablesController@makesave');
-  Route::post('/tables/make/delete', 'TablesController@makedelete');
-
-  Route::get('/tables/model', 'TablesController@model');
   Route::post('/model/create', 'TablesController@modelcreate');
-  Route::post('/tables/model/delete', 'TablesController@modeldelete');
-  Route::get('/tables/model/{id}/edit', 'TablesController@modeledit');
   Route::post('/model/edit', 'TablesController@modelsave');
-
-  Route::get('/tables/trans', 'TablesController@trans');
-
-  Route::get('/sold', 'SoldController@index');
-  Route::post('/sold', 'SoldController@sold');
-  Route::get('/sold/list', 'SoldController@list');
-  Route::post('/sold/delete', 'SoldController@delete');
+  Route::group(['prefix' => 'sold'],function (){
+      Route::get('/', 'SoldController@index');
+      Route::post('/', 'SoldController@sold');
+      Route::get('/list', 'SoldController@list');
+      Route::post('/delete', 'SoldController@delete');
+      Route::get('/detail/{id}', 'SoldController@detail');
+      Route::get('/edit/{id}', 'SoldController@edit');
+      Route::post('/deleteimg', 'SoldController@deleteimg');
+      Route::post('/soldedit', 'SoldController@soldedit');
+  });
 });

@@ -37,7 +37,7 @@
                                         @foreach($solds as $sold)
                                             <tr>
                                                 <td>
-                                                    <button class="btn btn-sm btn-rounded btn-outline-primary">
+                                                    <button class="btn btn-sm btn-rounded btn-outline-primary" onclick="getinfo({{ $sold->id }})";>
                                                         รายละเอียด
                                                     </button>
                                                 </td>
@@ -66,7 +66,7 @@
                                                 <td>{{ $sold->updated_at }}</td>
                                                 <td>
                                                     @if($sold->status == 0 || $sold->status == 1)
-                                                        <button class="btn btn-rounded btn-sm btn-outline-secondary">
+                                                        <button class="btn btn-rounded btn-sm btn-outline-secondary" onclick="soldedit({{ $sold->id }});">
                                                             แก้ไข
                                                         </button>
                                                         <button class="btn btn-rounded btn-sm btn-outline-danger"
@@ -89,6 +89,30 @@
 @endsection
 @section('script')
     <script>
+        function soldedit(id) {
+            if(id){
+                window.location = "{{ url('sold/edit') }}" + '/' +id;
+            } else {
+                swal({
+                    title: 'ไม่พบข้อมูล',
+                    type: 'error',
+                    confirmButtonClass: 'btn-danger',
+                });
+            }
+        }
+        ;
+        function getinfo(id) {
+            if(id){
+                window.location = "{{ url('sold/detail') }}" + '/' +id;
+            } else {
+                swal({
+                    title: 'ไม่พบข้อมูล',
+                    type: 'error',
+                    confirmButtonClass: 'btn-danger',
+                });
+            }
+        }
+        ;
         function solddelete(id) {
             swal(
                 {
@@ -119,6 +143,13 @@
                                     confirmButtonClass: 'btn-success',
                                 });
                                 window.location.reload();
+                            },
+                            error: function () {
+                                swal({
+                                    title: 'เกิดข้อผิดพลาด ไม่อนุญาตทำรายการ',
+                                    type: 'error',
+                                    confirmButtonClass: 'btn-danger',
+                                })
                             }
                         })
                     } else {

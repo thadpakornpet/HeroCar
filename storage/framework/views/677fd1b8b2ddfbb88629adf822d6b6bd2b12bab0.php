@@ -36,7 +36,7 @@
                                         <?php $__currentLoopData = $solds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sold): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
                                                 <td>
-                                                    <button class="btn btn-sm btn-rounded btn-outline-primary">
+                                                    <button class="btn btn-sm btn-rounded btn-outline-primary" onclick="getinfo(<?php echo e($sold->id); ?>)";>
                                                         รายละเอียด
                                                     </button>
                                                 </td>
@@ -65,7 +65,7 @@
                                                 <td><?php echo e($sold->updated_at); ?></td>
                                                 <td>
                                                     <?php if($sold->status == 0 || $sold->status == 1): ?>
-                                                        <button class="btn btn-rounded btn-sm btn-outline-secondary">
+                                                        <button class="btn btn-rounded btn-sm btn-outline-secondary" onclick="soldedit(<?php echo e($sold->id); ?>);">
                                                             แก้ไข
                                                         </button>
                                                         <button class="btn btn-rounded btn-sm btn-outline-danger"
@@ -88,6 +88,30 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
     <script>
+        function soldedit(id) {
+            if(id){
+                window.location = "<?php echo e(url('sold/edit')); ?>" + '/' +id;
+            } else {
+                swal({
+                    title: 'ไม่พบข้อมูล',
+                    type: 'error',
+                    confirmButtonClass: 'btn-danger',
+                });
+            }
+        }
+        ;
+        function getinfo(id) {
+            if(id){
+                window.location = "<?php echo e(url('sold/detail')); ?>" + '/' +id;
+            } else {
+                swal({
+                    title: 'ไม่พบข้อมูล',
+                    type: 'error',
+                    confirmButtonClass: 'btn-danger',
+                });
+            }
+        }
+        ;
         function solddelete(id) {
             swal(
                 {
@@ -118,6 +142,13 @@
                                     confirmButtonClass: 'btn-success',
                                 });
                                 window.location.reload();
+                            },
+                            error: function () {
+                                swal({
+                                    title: 'เกิดข้อผิดพลาด ไม่อนุญาตทำรายการ',
+                                    type: 'error',
+                                    confirmButtonClass: 'btn-danger',
+                                })
                             }
                         })
                     } else {

@@ -29,4 +29,21 @@ class Sold extends Model
     public function getNameEngine(){
         return $this->hasOne('App\Engine','id','enginetypeid');
     }
+
+    public function getNameColor(){
+        return $this->hasOne('App\Color','id','colorid');
+    }
+
+    public function getNameFuel(){
+        return $this->hasOne('App\Fuel','id','fueltype');
+    }
+
+    public function getNameTran(){
+        return $this->hasOne('App\Transmission','id','tranmisstionid');
+    }
+
+    public function getNameDrive(){
+        return $this->hasOne('App\Drive','id','drivetypeid');
+    }
+
 }
