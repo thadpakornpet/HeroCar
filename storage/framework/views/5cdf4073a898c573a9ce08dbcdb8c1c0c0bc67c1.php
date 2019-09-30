@@ -111,10 +111,10 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="ชื่อประเทศ(เต็ม)" name="name" required/>
+                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อประเทศ(เต็ม)" name="name" required/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="ชื่อประเทศ(ย่อ)" name="name_short" required/>
+                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อประเทศ(ย่อ)" name="name_short" required/>
                 </div>
             </div>
             <div class="modal-footer">

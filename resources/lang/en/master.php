@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -28,6 +28,7 @@ return [
     'taskdelete' => 'Are you sure you want to remove it?',
     'adduser' => 'Add user',
     'invite' => 'Add user by invite',
-    'company' => 'Info company'
+    'company' => 'Info company',
+    'ms' => 'Manage Sold'
 ];
 

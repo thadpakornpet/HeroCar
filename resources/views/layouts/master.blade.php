@@ -270,7 +270,7 @@
                     <li class="cui-menu-left-item">
                         <a href="{{ url('sold/manage') }}">
                             <span class="cui-menu-left-icon icmn-stack"></span>
-                            <span class="cui-menu-left-title">จัดการประกาศขายรถ [ {{ $soldcount }} ]</span>
+                            <span class="cui-menu-left-title">@lang('master.ms') [ {{ $soldcount }} ]</span>
                         </a>
                     </li>
                     @endrole

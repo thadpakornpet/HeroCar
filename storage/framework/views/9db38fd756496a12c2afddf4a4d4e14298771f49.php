@@ -270,7 +270,7 @@
                     <li class="cui-menu-left-item">
                         <a href="<?php echo e(url('sold/manage')); ?>">
                             <span class="cui-menu-left-icon icmn-stack"></span>
-                            <span class="cui-menu-left-title">จัดการประกาศขายรถ [ <?php echo e($soldcount); ?> ]</span>
+                            <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.ms'); ?> [ <?php echo e($soldcount); ?> ]</span>
                         </a>
                     </li>
                     <?php endif; ?>

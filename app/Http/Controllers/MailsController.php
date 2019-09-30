@@ -26,12 +26,12 @@ class MailsController extends Controller
     {
 
         if(implode(',',$request->to) == "other"){
-          $toemail[] = $request->emails;
+            $toemail = explode(',',$request->emails);
         } else {
-          $toemail = $request->to;
+            $toemail = $request->to;
         }
 
-        //return $toemail;
+        //return $to;
 
         $remark = 'Send from system';
         if($request->details != ""){
@@ -70,7 +70,7 @@ class MailsController extends Controller
         \App\Emails::create([
                 'userid' => Auth::user()->id,
                 'fromemail' => env('MAIL_USERNAME'),
-                'toemail' => json_encode($request->to),
+                'toemail' => json_encode($toemail),
                 'title' => $request->subject,
                 'attachment' => $filename,
                 'remark' => $remark
@@ -92,7 +92,7 @@ class MailsController extends Controller
     {
         if (!Auth::user()->hasRole('super')) {
           if(!\App\Emails::where('userid','=',Auth::user()->id)->find($id)){
-              abort(401, 'Not Allow');
+              return back()->with('error','Not allow');
           }
         }
         $inbox = \App\Emails::find($id);

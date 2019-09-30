@@ -73,7 +73,7 @@ class TasksController extends Controller
     {
         if (!Auth::user()->hasRole('super')) {
             if (!\App\Task::where('userid', '=', Auth::user()->id)->find($id)) {
-                abort(401, 'Not Allow');
+                return back()->with('error','Not Allow');
             }
         }
         $task = Task::find($id);
