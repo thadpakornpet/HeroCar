@@ -50,19 +50,19 @@
                                                 <td>{{ number_format($sold->price) }}</td>
                                                 <td>
                                                     @if($sold->status == 0)
-                                                        <button class="btn btn-warning btn-sm" style="width: 60px">Pending</button>
+                                                        <button class="btn btn-warning btn-sm" style="width: 70px">Pending</button>
                                                     @endif
                                                     @if($sold->status == 1)
-                                                        <button class="btn btn-success btn-sm" style="width: 60px">Active</button>
+                                                        <button class="btn btn-success btn-sm" style="width: 70px">Active</button>
                                                     @endif
                                                     @if($sold->status == 2)
-                                                        <button class="btn btn-primary btn-sm" style="width: 60px">Sold</button>
+                                                        <button class="btn btn-primary btn-sm" style="width: 70px">Sold</button>
                                                     @endif
                                                     @if($sold->status == 3)
-                                                        <button class="btn btn-secondary btn-sm" style="width: 60px">Cancel</button>
+                                                        <button class="btn btn-secondary btn-sm" style="width: 70px">Cancel</button>
                                                     @endif
                                                         @if($sold->status == 4)
-                                                            <button class="btn btn-danger btn-sm" style="width: 60px">Reject</button>
+                                                            <button class="btn btn-danger btn-sm" style="width: 70px">Reject</button>
                                                         @endif
                                                 </td>
                                                 <td>{{ $sold->created_at }}</td>

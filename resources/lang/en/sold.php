@@ -29,5 +29,6 @@ return [
     'year' => 'Year',
     'mile' => 'Miles',
     'img' => 'Images',
-    'deleteimg' => 'Click image to delete'
+    'deleteimg' => 'Click image to delete',
+    'addsold' => 'Add Sold'
 ];
