@@ -55,11 +55,11 @@
                                         </td>
                                         <td class="text-center">
                                             @role('super')
-                                            <a title="แก้ไข" href="{{ url('tables/body/'.$user->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+                                            <a title="แก้ไข" href="{{ url('tables/fuel/'.$user->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
 
                                             <a title="ลบ" onclick="deleteRow('{!! $user->id !!}')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                             @endrole
-                                        <form method="POST" class="hidden" id="formDelete{!! $user->id !!}" action="{{ url('tables/body/delete') }}">
+                                        <form method="POST" class="hidden" id="formDelete{!! $user->id !!}" action="{{ url('tables/fuel/delete') }}">
                                                 {!! csrf_field() !!}
                                                 <input type="hidden" value="{{ $user->id }}" name="id">
                                             </form>
@@ -89,11 +89,11 @@
 
 <div class="modal fade modal-size-large" id="createbody" tabindex="-1" role="dialog" aria-hidden="true">
 <div class="modal-dialog" role="document">
-<form action="{{ url('body/create') }}" method="post">
+<form action="{{ url('fuel/create') }}" method="post">
         @csrf
         <div class="modal-content">
             <div class="modal-header">
-                <h4>เพิ่มข้อมูลรูปแบบรถ</h4>
+                <h4>เพิ่มข้อมูลประเภทเชื้อเพลิง</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -102,9 +102,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อรูปแบบ" name="name" required/>
                 </div>
-                <div class="form-group">
-                    <input type="file" class="form-control" name="image" required/>
-                </div>
+                
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn width-200 btn-primary">
