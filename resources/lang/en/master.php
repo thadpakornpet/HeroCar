@@ -31,6 +31,22 @@ return [
     'company' => 'Info company',
     'ms' => 'Manage Sold',
     'report' => 'Report',
-    'acc' => 'Accounting'
+    'acc' => 'Accounting',
+    'car' => 'Setting car',
+    'sold' => 'Manage Sold',
+    'addsold' => 'Add Sold',
+    'listsold' => 'Lists Sold',
+    'to' => 'To',
+    'other' => 'Please input email, if multiple email use ,(Comma) between email',
+    'subject' => 'Subject',
+    'country' => 'Country',
+    'body' => 'Body',
+    'color' => 'Color',
+    'drive' => 'Drive',
+    'engine' => 'Engine',
+    'fuel' => 'Fuel',
+    'make' => 'Brand',
+    'model' => 'Model',
+    'tran' => 'Transmission'
 ];
 

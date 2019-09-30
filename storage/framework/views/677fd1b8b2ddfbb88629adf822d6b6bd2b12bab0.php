@@ -3,7 +3,7 @@
         <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
             <span class="text-muted"><?php echo app('translator')->getFromJson('logs.home'); ?> ·</span>
-            <strong>รายการรถที่ประกาศขาย</strong>
+            <strong><?php echo app('translator')->getFromJson('sold.home'); ?></strong>
         </span>
         </nav>
 
@@ -18,16 +18,16 @@
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th>เลขที่ประกาศ</th>
-                                        <th>ทะเบียน</th>
-                                        <th>ยี่ห้อ</th>
-                                        <th>รุ่น</th>
-                                        <th>รูปแบบ</th>
-                                        <th>ประเทศ</th>
-                                        <th>ราคา</th>
-                                        <th>สถานะ</th>
-                                        <th>ประกาศเมื่อ</th>
-                                        <th>ปรับปรุงเมื่อ</th>
+                                        <th><?php echo app('translator')->getFromJson('sold.id'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.license'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.make'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.model'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.body'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.country'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.price'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.status'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.create'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.update'); ?></th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -37,7 +37,7 @@
                                             <tr>
                                                 <td>
                                                     <button class="btn btn-sm btn-rounded btn-outline-primary" onclick="getinfo(<?php echo e($sold->id); ?>)";>
-                                                        รายละเอียด
+                                                        <?php echo app('translator')->getFromJson('sold.detail'); ?>
                                                     </button>
                                                 </td>
                                                 <td><?php echo e($sold->id); ?></td>
@@ -45,23 +45,23 @@
                                                 <td><?php echo e($sold->getNameMake->name); ?></td>
                                                 <td><?php echo e($sold->getNameModel->name); ?></td>
                                                 <td><?php echo e($sold->getNameBodyType->name); ?></td>
-                                                <td><?php echo e($sold->getNameCountry->name); ?></td>
+                                                <td><?php if(str_replace('_', '-', app()->getLocale()) == "th"): ?> <?php echo e($sold->getNameCountry->name); ?> <?php else: ?> <?php echo e($sold->getNameCountry->name_short); ?> <?php endif; ?></td>
                                                 <td><?php echo e(number_format($sold->price)); ?></td>
                                                 <td>
                                                     <?php if($sold->status == 0): ?>
-                                                        <button class="btn btn-warning btn-sm">Pending</button>
+                                                        <button class="btn btn-warning btn-sm" style="width: 60px">Pending</button>
                                                     <?php endif; ?>
                                                     <?php if($sold->status == 1): ?>
-                                                        <button class="btn btn-success btn-sm">Active</button>
+                                                        <button class="btn btn-success btn-sm" style="width: 60px">Active</button>
                                                     <?php endif; ?>
                                                     <?php if($sold->status == 2): ?>
-                                                        <button class="btn btn-primary btn-sm">Sold</button>
+                                                        <button class="btn btn-primary btn-sm" style="width: 60px">Sold</button>
                                                     <?php endif; ?>
                                                     <?php if($sold->status == 3): ?>
-                                                        <button class="btn btn-secondary btn-sm">Cancel</button>
+                                                        <button class="btn btn-secondary btn-sm" style="width: 60px">Cancel</button>
                                                     <?php endif; ?>
                                                         <?php if($sold->status == 4): ?>
-                                                            <button class="btn btn-danger btn-sm">Reject</button>
+                                                            <button class="btn btn-danger btn-sm" style="width: 60px">Reject</button>
                                                         <?php endif; ?>
                                                 </td>
                                                 <td><?php echo e($sold->created_at); ?></td>
@@ -70,22 +70,22 @@
                                                     <?php if(auth()->check() && auth()->user()->hasRole('owner')): ?>
                                                     <?php if($sold->status == 0 || $sold->status == 1): ?>
                                                         <button class="btn btn-rounded btn-sm btn-outline-secondary" onclick="soldedit(<?php echo e($sold->id); ?>);">
-                                                            แก้ไข
+                                                            <?php echo app('translator')->getFromJson('sold.edit'); ?>
                                                         </button>
                                                         <button class="btn btn-rounded btn-sm btn-outline-danger"
-                                                                onclick="solddelete(<?php echo e($sold->id); ?>);">ลบ
+                                                                onclick="solddelete(<?php echo e($sold->id); ?>);"><?php echo app('translator')->getFromJson('sold.delete'); ?>
                                                         </button>
                                                     <?php endif; ?>
                                                     <?php endif; ?>
                                                     <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
                                                     <button class="btn btn-rounded btn-sm btn-outline-success" onclick="approve(<?php echo e($sold->id); ?>,1);">
-                                                        อนุมัติ
+                                                        <?php echo app('translator')->getFromJson('sold.approve'); ?>
                                                     </button>
                                                     <button class="btn btn-rounded btn-sm btn-outline-warning" onclick="approve(<?php echo e($sold->id); ?>,4);">
-                                                        ไม่อนุมัติ
+                                                        <?php echo app('translator')->getFromJson('sold.inapprove'); ?>
                                                     </button>
                                                     <button class="btn btn-rounded btn-sm btn-outline-danger"
-                                                            onclick="solddelete(<?php echo e($sold->id); ?>);">ลบ
+                                                            onclick="solddelete(<?php echo e($sold->id); ?>);"><?php echo app('translator')->getFromJson('sold.delete'); ?>
                                                     </button>
                                                     <?php endif; ?>
                                                 </td>
@@ -108,12 +108,12 @@
         function approve(a,b) {
             swal(
                 {
-                    title: 'ต้องการดำเนินการ?',
+                    title: '<?php echo app('translator')->getFromJson("sold.continue"); ?>?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonClass: 'btn-danger',
-                    confirmButtonText: 'ยืนยัน',
-                    cancelButtonText: 'ยกเลิก',
+                    confirmButtonText: '<?php echo app('translator')->getFromJson("sold.confirm"); ?>',
+                    cancelButtonText: '<?php echo app('translator')->getFromJson("sold.cancel"); ?>',
                     closeOnConfirm: false,
                     closeOnCancel: false,
                 },
@@ -130,7 +130,7 @@
                             type: 'POST',
                             success: function () {
                                 swal({
-                                    title: 'ดำเนินการเรียบร้อยแล้ว!',
+                                    title: '<?php echo app('translator')->getFromJson("sold.success"); ?>!',
                                     type: 'success',
                                     confirmButtonClass: 'btn-success',
                                 });
@@ -138,7 +138,7 @@
                             },
                             error: function () {
                                 swal({
-                                    title: 'เกิดข้อผิดพลาด ไม่อนุญาตทำรายการ',
+                                    title: '<?php echo app('translator')->getFromJson("sold.error"); ?>',
                                     type: 'error',
                                     confirmButtonClass: 'btn-danger',
                                 })
@@ -146,7 +146,7 @@
                         })
                     } else {
                         swal({
-                            title: 'ดำเนินการล้มเหลว',
+                            title: '<?php echo app('translator')->getFromJson("sold.error"); ?>',
                             type: 'error',
                             confirmButtonClass: 'btn-danger',
                         })
@@ -161,7 +161,7 @@
                 window.location = "<?php echo e(url('sold/edit')); ?>" + '/' +id;
             } else {
                 swal({
-                    title: 'ไม่พบข้อมูล',
+                    title: '<?php echo app('translator')->getFromJson("sold.not"); ?>',
                     type: 'error',
                     confirmButtonClass: 'btn-danger',
                 });
@@ -177,7 +177,7 @@
                 <?php endif; ?>
             } else {
                 swal({
-                    title: 'ไม่พบข้อมูล',
+                    title: '<?php echo app('translator')->getFromJson("sold.not"); ?>',
                     type: 'error',
                     confirmButtonClass: 'btn-danger',
                 });
@@ -187,12 +187,12 @@
         function solddelete(id) {
             swal(
                 {
-                    title: 'คุณต้องการลบ?',
+                    title: '<?php echo app('translator')->getFromJson("sold.continue"); ?>?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonClass: 'btn-danger',
-                    confirmButtonText: 'ยืนยันการลบ',
-                    cancelButtonText: 'ยกเลิก',
+                    confirmButtonText: '<?php echo app('translator')->getFromJson("sold.confirm"); ?>',
+                    cancelButtonText: '<?php echo app('translator')->getFromJson("sold.cancel"); ?>',
                     closeOnConfirm: false,
                     closeOnCancel: false,
                 },
@@ -209,7 +209,7 @@
                             type: 'POST',
                             success: function () {
                                 swal({
-                                    title: 'ลบเรียบร้อยแล้ว!',
+                                    title: '<?php echo app('translator')->getFromJson("sold.success"); ?>!',
                                     type: 'success',
                                     confirmButtonClass: 'btn-success',
                                 });
@@ -217,7 +217,7 @@
                             },
                             error: function () {
                                 swal({
-                                    title: 'เกิดข้อผิดพลาด ไม่อนุญาตทำรายการ',
+                                    title: '<?php echo app('translator')->getFromJson("sold.error"); ?>',
                                     type: 'error',
                                     confirmButtonClass: 'btn-danger',
                                 })
@@ -225,7 +225,7 @@
                         })
                     } else {
                         swal({
-                            title: 'การลบล้มเหลว',
+                            title: '<?php echo app('translator')->getFromJson("sold.not"); ?>',
                             type: 'error',
                             confirmButtonClass: 'btn-danger',
                         })

@@ -3,7 +3,7 @@
         <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
             <span class="text-muted"><?php echo app('translator')->getFromJson('logs.home'); ?> ·</span>
-            <strong>ประกาศขายรถ</strong>
+            <strong><?php echo app('translator')->getFromJson('sold.home'); ?></strong>
         </span>
         </nav>
 
@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
     <span class="cui-utils-title">
-      <strong>รายละเอียด
+      <strong><?php echo app('translator')->getFromJson('sold.detail'); ?>
       </strong>
     </span>
                 </div>
@@ -41,7 +41,7 @@
                         <div class="col-lg-8">
                             <ul class="breadcrumb breadcrumb-custom">
                                 <li class="breadcrumb-item">
-                                    สถานะ
+                                    <?php echo app('translator')->getFromJson('sold.status'); ?>
                                     <?php if($sold->status == 0): ?>
                                         <button class="btn btn-warning btn-sm">Pending</button>
                                     <?php endif; ?>
@@ -64,7 +64,7 @@
 
                             </div>
                             <h4 class="cui-ecommerce-product-main-title">
-                                <strong>รถ <?php echo e($sold->getNameMake->name); ?> รุ่น <?php echo e($sold->getNameModel->name); ?></strong>
+                                <strong><?php echo app('translator')->getFromJson('sold.make'); ?> <?php echo e($sold->getNameMake->name); ?> <?php echo app('translator')->getFromJson('sold.model'); ?> <?php echo e($sold->getNameModel->name); ?></strong>
                             </h4>
                             <div class="cui-ecommerce-product-price">
                                 THB <?php echo e(number_format($sold->price)); ?>
@@ -80,7 +80,7 @@
                                                 data-toggle="tab"
                                                 data-target="#tab1"
                                                 role="tab"
-                                            >เกี่ยวกับรถ</a
+                                            ><?php echo app('translator')->getFromJson('sold.about'); ?></a
                                             >
                                         </li>
                                         <li class="nav-item">
@@ -90,7 +90,7 @@
                                                 data-toggle="tab"
                                                 data-target="#tab2"
                                                 role="tab"
-                                            >บันทึกคนขาย</a
+                                            ><?php echo app('translator')->getFromJson('sold.note'); ?></a
                                             >
                                         </li>
                                         <?php if(isset($fea)): ?>
@@ -101,7 +101,7 @@
                                                     data-toggle="tab"
                                                     data-target="#tab3"
                                                     role="tab"
-                                                >อุปกรณ์หรืออะไหล่เสริม</a
+                                                ><?php echo app('translator')->getFromJson('sold.feature'); ?></a
                                                 >
                                             </li>
                                         <?php endif; ?>
@@ -112,60 +112,60 @@
                                                 <br/>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <strong>รูปแบบรถ :</strong> <?php echo e($sold->getNameBodyType->name); ?>
+                                                        <strong><?php echo app('translator')->getFromJson('sold.body'); ?> :</strong> <?php echo e($sold->getNameBodyType->name); ?>
 
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ประเทศ :</strong> <?php echo e($sold->getNameCountry->name); ?>
+                                                        <strong><?php echo app('translator')->getFromJson('sold.country'); ?> :</strong> <?php echo e($sold->getNameCountry->name); ?>
 
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ทะเบียน :</strong> <?php echo e($sold->licenseno); ?>
-
-                                                    </div>
-                                                </div>
-                                                <br/>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <strong>ขับเคลื่อน :</strong> <?php echo e($sold->getNameDrive->name); ?>
-
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <strong>เกียร์ :</strong> <?php echo e($sold->getNameTran->name); ?>
-
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <strong>เครื่องยนต์ :</strong> <?php echo e($sold->getNameEngine->name); ?>
+                                                        <strong><?php echo app('translator')->getFromJson('sold.license'); ?> :</strong> <?php echo e($sold->licenseno); ?>
 
                                                     </div>
                                                 </div>
                                                 <br/>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <strong>เชื้อเพลิง :</strong> <?php echo e($sold->getNameFuel->name); ?>
+                                                        <strong><?php echo app('translator')->getFromJson('sold.drive'); ?> :</strong> <?php echo e($sold->getNameDrive->name); ?>
 
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>สี :</strong> <?php echo e($sold->getNameColor->name); ?>
+                                                        <strong><?php echo app('translator')->getFromJson('sold.tran'); ?> :</strong> <?php echo e($sold->getNameTran->name); ?>
 
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ปี :</strong> <?php echo e($sold->year); ?>
+                                                        <strong><?php echo app('translator')->getFromJson('sold.engine'); ?> :</strong> <?php echo e($sold->getNameEngine->name); ?>
 
                                                     </div>
                                                 </div>
                                                 <br/>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <strong>ไมล์ :</strong> <?php echo e($sold->miles); ?>
+                                                        <strong><?php echo app('translator')->getFromJson('sold.fuel'); ?> :</strong> <?php echo e($sold->getNameFuel->name); ?>
 
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ประกาศเมื่อ :</strong> <?php echo e($sold->created_at); ?>
+                                                        <strong><?php echo app('translator')->getFromJson('sold.color'); ?> :</strong> <?php echo e($sold->getNameColor->name); ?>
 
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ปรับปรุงเมื่อ :</strong> <?php echo e($sold->updated_at); ?>
+                                                        <strong><?php echo app('translator')->getFromJson('sold.year'); ?> :</strong> <?php echo e($sold->year); ?>
+
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <strong><?php echo app('translator')->getFromJson('sold.mile'); ?> :</strong> <?php echo e($sold->miles); ?>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <strong><?php echo app('translator')->getFromJson('sold.create'); ?> :</strong> <?php echo e($sold->created_at); ?>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <strong><?php echo app('translator')->getFromJson('sold.update'); ?> :</strong> <?php echo e($sold->updated_at); ?>
 
                                                     </div>
                                                 </div>

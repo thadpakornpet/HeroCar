@@ -4,7 +4,7 @@
         <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
             <span class="text-muted">@lang('logs.home') ·</span>
-            <strong>ประกาศขายรถ</strong>
+            <strong>@lang('sold.home')</strong>
         </span>
         </nav>
 
@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-header">
     <span class="cui-utils-title">
-      <strong>รายละเอียด
+      <strong>@lang('sold.detail')
       </strong>
     </span>
                 </div>
@@ -42,7 +42,7 @@
                         <div class="col-lg-8">
                             <ul class="breadcrumb breadcrumb-custom">
                                 <li class="breadcrumb-item">
-                                    สถานะ
+                                    @lang('sold.status')
                                     @if($sold->status == 0)
                                         <button class="btn btn-warning btn-sm">Pending</button>
                                     @endif
@@ -64,7 +64,7 @@
                                 SOLD ID : {{ $sold->id }}
                             </div>
                             <h4 class="cui-ecommerce-product-main-title">
-                                <strong>รถ {{ $sold->getNameMake->name }} รุ่น {{ $sold->getNameModel->name }}</strong>
+                                <strong>@lang('sold.make') {{ $sold->getNameMake->name }} @lang('sold.model') {{ $sold->getNameModel->name }}</strong>
                             </h4>
                             <div class="cui-ecommerce-product-price">
                                 THB {{ number_format($sold->price) }}
@@ -79,7 +79,7 @@
                                                 data-toggle="tab"
                                                 data-target="#tab1"
                                                 role="tab"
-                                            >เกี่ยวกับรถ</a
+                                            >@lang('sold.about')</a
                                             >
                                         </li>
                                         <li class="nav-item">
@@ -89,7 +89,7 @@
                                                 data-toggle="tab"
                                                 data-target="#tab2"
                                                 role="tab"
-                                            >บันทึกคนขาย</a
+                                            >@lang('sold.note')</a
                                             >
                                         </li>
                                         @if(isset($fea))
@@ -100,7 +100,7 @@
                                                     data-toggle="tab"
                                                     data-target="#tab3"
                                                     role="tab"
-                                                >อุปกรณ์หรืออะไหล่เสริม</a
+                                                >@lang('sold.feature')</a
                                                 >
                                             </li>
                                         @endif
@@ -111,49 +111,49 @@
                                                 <br/>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <strong>รูปแบบรถ :</strong> {{ $sold->getNameBodyType->name }}
+                                                        <strong>@lang('sold.body') :</strong> {{ $sold->getNameBodyType->name }}
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ประเทศ :</strong> {{ $sold->getNameCountry->name }}
+                                                        <strong>@lang('sold.country') :</strong> {{ $sold->getNameCountry->name }}
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ทะเบียน :</strong> {{ $sold->licenseno }}
-                                                    </div>
-                                                </div>
-                                                <br/>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <strong>ขับเคลื่อน :</strong> {{ $sold->getNameDrive->name }}
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <strong>เกียร์ :</strong> {{ $sold->getNameTran->name }}
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <strong>เครื่องยนต์ :</strong> {{ $sold->getNameEngine->name }}
+                                                        <strong>@lang('sold.license') :</strong> {{ $sold->licenseno }}
                                                     </div>
                                                 </div>
                                                 <br/>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <strong>เชื้อเพลิง :</strong> {{ $sold->getNameFuel->name }}
+                                                        <strong>@lang('sold.drive') :</strong> {{ $sold->getNameDrive->name }}
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>สี :</strong> {{ $sold->getNameColor->name }}
+                                                        <strong>@lang('sold.tran') :</strong> {{ $sold->getNameTran->name }}
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ปี :</strong> {{ $sold->year }}
+                                                        <strong>@lang('sold.engine') :</strong> {{ $sold->getNameEngine->name }}
                                                     </div>
                                                 </div>
                                                 <br/>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <strong>ไมล์ :</strong> {{ $sold->miles }}
+                                                        <strong>@lang('sold.fuel') :</strong> {{ $sold->getNameFuel->name }}
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ประกาศเมื่อ :</strong> {{ $sold->created_at }}
+                                                        <strong>@lang('sold.color') :</strong> {{ $sold->getNameColor->name }}
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <strong>ปรับปรุงเมื่อ :</strong> {{ $sold->updated_at }}
+                                                        <strong>@lang('sold.year') :</strong> {{ $sold->year }}
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <strong>@lang('sold.mile') :</strong> {{ $sold->miles }}
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <strong>@lang('sold.create') :</strong> {{ $sold->created_at }}
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <strong>@lang('sold.update') :</strong> {{ $sold->updated_at }}
                                                     </div>
                                                 </div>
                                             </dl>

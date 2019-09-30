@@ -57,11 +57,11 @@
                                         </td>
                                         <td class="text-center">
                                             <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
-                                            <a title="แก้ไข" href="<?php echo e(url('tables/body/'.$user->id.'/edit')); ?>" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+                                            <a title="แก้ไข" href="<?php echo e(url('tables/color/'.$user->id.'/edit')); ?>" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
 
                                             <a title="ลบ" onclick="deleteRow('<?php echo $user->id; ?>')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                             <?php endif; ?>
-                                        <form method="POST" class="hidden" id="formDelete<?php echo $user->id; ?>" action="<?php echo e(url('tables/body/delete')); ?>">
+                                        <form method="POST" class="hidden" id="formDelete<?php echo $user->id; ?>" action="<?php echo e(url('tables/color/delete')); ?>">
                                                 <?php echo csrf_field(); ?>
 
                                                 <input type="hidden" value="<?php echo e($user->id); ?>" name="id">
@@ -93,22 +93,20 @@
 
 <div class="modal fade modal-size-large" id="createbody" tabindex="-1" role="dialog" aria-hidden="true">
 <div class="modal-dialog" role="document">
-<form action="<?php echo e(url('body/create')); ?>" method="post">
+<form action="<?php echo e(url('color/create')); ?>" method="post">
         <?php echo csrf_field(); ?>
         <div class="modal-content">
             <div class="modal-header">
-                <h4>เพิ่มข้อมูลรูปแบบรถ</h4>
+                <h4>เพิ่มข้อมูลสีรถ</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="ชื่อรูปแบบ" name="name" required/>
+                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อรูปแบบ" name="name" required/>
                 </div>
-                <div class="form-group">
-                    <input type="file" class="form-control" name="image" required/>
-                </div>
+               
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn width-200 btn-primary">

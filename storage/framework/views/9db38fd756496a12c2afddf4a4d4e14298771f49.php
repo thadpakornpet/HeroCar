@@ -217,52 +217,52 @@
                     <li class="cui-menu-left-item cui-menu-left-submenu">
                         <a href="javascript: void(0);">
                             <span class="cui-menu-left-icon icmn-table"></span>
-                            <span class="cui-menu-left-title">จัดการข้อมูลรถ</span>
+                            <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.car'); ?></span>
                         </a>
                         <ul class="cui-menu-left-list">
                             <li class="cui-menu-left-item">
                                 <a href="<?php echo e(url('tables/country')); ?>">
-                                    <span class="cui-menu-left-title">ข้อมูลประเทศ</span>
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.country'); ?></span>
                                 </a>
                             </li>
                             <li class="cui-menu-left-item">
                                 <a href="<?php echo e(url('tables/body')); ?>">
-                                    <span class="cui-menu-left-title">รูปแบบรถ</span>
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.body'); ?></span>
                                 </a>
                             </li>
                             <li class="cui-menu-left-item">
                                 <a href="<?php echo e(url('tables/color')); ?>">
-                                    <span class="cui-menu-left-title">ข้อมูลสีของรถ</span>
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.color'); ?></span>
                                 </a>
                             </li>
                             <li class="cui-menu-left-item">
                                 <a href="<?php echo e(url('tables/drive')); ?>">
-                                    <span class="cui-menu-left-title">ประเภทขับเคลื่อน</span>
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.drive'); ?></span>
                                 </a>
                             </li>
                             <li class="cui-menu-left-item">
                                 <a href="<?php echo e(url('tables/engine')); ?>">
-                                    <span class="cui-menu-left-title">ประเภทเครื่องยนต์</span>
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.engine'); ?></span>
                                 </a>
                             </li>
                             <li class="cui-menu-left-item">
                                 <a href="<?php echo e(url('tables/fuel')); ?>">
-                                    <span class="cui-menu-left-title">ประเภทเชื้อเพลิง</span>
-                                </a>
-                            </li>
-                            <li class="cui-menu-left-item">
-                                <a href="<?php echo e(url('tables/make')); ?>">
-                                    <span class="cui-menu-left-title">ยี่ห้อรถ</span>
-                                </a>
-                            </li>
-                            <li class="cui-menu-left-item">
-                                <a href="<?php echo e(url('tables/model')); ?>">
-                                    <span class="cui-menu-left-title">รุ่นรถ</span>
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.fuel'); ?></span>
                                 </a>
                             </li>
                             <li class="cui-menu-left-item">
                                 <a href="<?php echo e(url('tables/trans')); ?>">
-                                    <span class="cui-menu-left-title">ระบบเกียร์</span>
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.tran'); ?></span>
+                                </a>
+                            </li>
+                            <li class="cui-menu-left-item">
+                                <a href="<?php echo e(url('tables/make')); ?>">
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.make'); ?></span>
+                                </a>
+                            </li>
+                            <li class="cui-menu-left-item">
+                                <a href="<?php echo e(url('tables/model')); ?>">
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.model'); ?></span>
                                 </a>
                             </li>
                         </ul>
@@ -278,7 +278,7 @@
                     <li class="cui-menu-left-item cui-menu-left-submenu">
                         <a href="javascript: void(0);">
                             <span class="cui-menu-left-icon icmn-file-text"></span>
-                            <span class="cui-menu-left-title">รายงาน</span>
+                            <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.report'); ?></span>
                         </a>
                         <ul class="cui-menu-left-list">
                             <li class="cui-menu-left-item">
@@ -297,7 +297,7 @@
                     <li class="cui-menu-left-item">
                         <a href="#">
                             <span class="cui-menu-left-icon icmn-stats-bars"></span>
-                            <span class="cui-menu-left-title">บัญชี</span>
+                            <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.acc'); ?></span>
                         </a>
                     </li>
                     <?php endif; ?>
@@ -305,17 +305,17 @@
                     <li class="cui-menu-left-item cui-menu-left-submenu">
                         <a href="javascript: void(0);">
                             <span class="cui-menu-left-icon icmn-pen"></span>
-                            <span class="cui-menu-left-title">ประกาศขายรถ</span>
+                            <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.sold'); ?></span>
                         </a>
                         <ul class="cui-menu-left-list">
                             <li class="cui-menu-left-item">
                                 <a href="<?php echo e(url('/sold')); ?>">
-                                    <span class="cui-menu-left-title">เพิ่มประกาศ</span>
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.addsold'); ?></span>
                                 </a>
                             </li>
                             <li class="cui-menu-left-item">
                                 <a href="<?php echo e(url('sold/list')); ?>">
-                                    <span class="cui-menu-left-title">จัดการประกาศ</span>
+                                    <span class="cui-menu-left-title"><?php echo app('translator')->getFromJson('master.listsold'); ?></span>
                                 </a>
                             </li>
                         </ul>
@@ -455,7 +455,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>เลือกผู้รับ</label>
+                        <label><?php echo app('translator')->getFromJson('master.to'); ?></label>
                         <select class="form-control select2" multiple="multiple" name="to[]" required
                                 style="font-family: 'Pridi', serif;" onchange="yesnoCheck(this);" required>
                             <?php $__currentLoopData = $mailusers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mailuser): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -466,12 +466,12 @@
                         </select>
                     </div>
                     <div class="form-group" id="other" style="display: none;">
-                        <label>กรุณาระบุอีเมล์ผู้รับ (หลายคนใช้เครื่อง ,(ลูกน้ำ) ขั้นระหว่างอีเมล์)</label>
+                        <label><?php echo app('translator')->getFromJson('master.other'); ?></label>
                         <input type="text" style="font-family: 'Pridi', serif;" class="form-control" name="emails"
                                placeholder="email">
                     </div>
                     <div class="form-group">
-                        <label>ชื่อเรื่อง</label>
+                        <label><?php echo app('translator')->getFromJson('master.subject'); ?></label>
                         <input type="text" style="font-family: 'Pridi', serif;" class="form-control"
                                placeholder="Subject" name="subject" required/>
                     </div>

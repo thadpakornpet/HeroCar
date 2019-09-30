@@ -3,7 +3,7 @@
         <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
             <span class="text-muted"><?php echo app('translator')->getFromJson('logs.home'); ?> ·</span>
-            <strong>แก้ไขประกาศขายรถ</strong>
+            <strong><?php echo app('translator')->getFromJson('sold.home'); ?></strong>
         </span>
         </nav>
 

@@ -4,7 +4,7 @@
         <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
             <span class="text-muted">@lang('logs.home') ·</span>
-            <strong>รายการรถที่ประกาศขาย</strong>
+            <strong>@lang('sold.home')</strong>
         </span>
         </nav>
 
@@ -19,16 +19,16 @@
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th>เลขที่ประกาศ</th>
-                                        <th>ทะเบียน</th>
-                                        <th>ยี่ห้อ</th>
-                                        <th>รุ่น</th>
-                                        <th>รูปแบบ</th>
-                                        <th>ประเทศ</th>
-                                        <th>ราคา</th>
-                                        <th>สถานะ</th>
-                                        <th>ประกาศเมื่อ</th>
-                                        <th>ปรับปรุงเมื่อ</th>
+                                        <th>@lang('sold.id')</th>
+                                        <th>@lang('sold.license')</th>
+                                        <th>@lang('sold.make')</th>
+                                        <th>@lang('sold.model')</th>
+                                        <th>@lang('sold.body')</th>
+                                        <th>@lang('sold.country')</th>
+                                        <th>@lang('sold.price')</th>
+                                        <th>@lang('sold.status')</th>
+                                        <th>@lang('sold.create')</th>
+                                        <th>@lang('sold.update')</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -38,7 +38,7 @@
                                             <tr>
                                                 <td>
                                                     <button class="btn btn-sm btn-rounded btn-outline-primary" onclick="getinfo({{ $sold->id }})";>
-                                                        รายละเอียด
+                                                        @lang('sold.detail')
                                                     </button>
                                                 </td>
                                                 <td>{{ $sold->id }}</td>
@@ -46,23 +46,23 @@
                                                 <td>{{ $sold->getNameMake->name }}</td>
                                                 <td>{{ $sold->getNameModel->name }}</td>
                                                 <td>{{ $sold->getNameBodyType->name }}</td>
-                                                <td>{{ $sold->getNameCountry->name }}</td>
+                                                <td>@if(str_replace('_', '-', app()->getLocale()) == "th") {{ $sold->getNameCountry->name }} @else {{ $sold->getNameCountry->name_short }} @endif</td>
                                                 <td>{{ number_format($sold->price) }}</td>
                                                 <td>
                                                     @if($sold->status == 0)
-                                                        <button class="btn btn-warning btn-sm">Pending</button>
+                                                        <button class="btn btn-warning btn-sm" style="width: 60px">Pending</button>
                                                     @endif
                                                     @if($sold->status == 1)
-                                                        <button class="btn btn-success btn-sm">Active</button>
+                                                        <button class="btn btn-success btn-sm" style="width: 60px">Active</button>
                                                     @endif
                                                     @if($sold->status == 2)
-                                                        <button class="btn btn-primary btn-sm">Sold</button>
+                                                        <button class="btn btn-primary btn-sm" style="width: 60px">Sold</button>
                                                     @endif
                                                     @if($sold->status == 3)
-                                                        <button class="btn btn-secondary btn-sm">Cancel</button>
+                                                        <button class="btn btn-secondary btn-sm" style="width: 60px">Cancel</button>
                                                     @endif
                                                         @if($sold->status == 4)
-                                                            <button class="btn btn-danger btn-sm">Reject</button>
+                                                            <button class="btn btn-danger btn-sm" style="width: 60px">Reject</button>
                                                         @endif
                                                 </td>
                                                 <td>{{ $sold->created_at }}</td>
@@ -71,22 +71,22 @@
                                                     @role('owner')
                                                     @if($sold->status == 0 || $sold->status == 1)
                                                         <button class="btn btn-rounded btn-sm btn-outline-secondary" onclick="soldedit({{ $sold->id }});">
-                                                            แก้ไข
+                                                            @lang('sold.edit')
                                                         </button>
                                                         <button class="btn btn-rounded btn-sm btn-outline-danger"
-                                                                onclick="solddelete({{ $sold->id }});">ลบ
+                                                                onclick="solddelete({{ $sold->id }});">@lang('sold.delete')
                                                         </button>
                                                     @endif
                                                     @endrole
                                                     @role('super')
                                                     <button class="btn btn-rounded btn-sm btn-outline-success" onclick="approve({{ $sold->id }},1);">
-                                                        อนุมัติ
+                                                        @lang('sold.approve')
                                                     </button>
                                                     <button class="btn btn-rounded btn-sm btn-outline-warning" onclick="approve({{ $sold->id }},4);">
-                                                        ไม่อนุมัติ
+                                                        @lang('sold.inapprove')
                                                     </button>
                                                     <button class="btn btn-rounded btn-sm btn-outline-danger"
-                                                            onclick="solddelete({{ $sold->id }});">ลบ
+                                                            onclick="solddelete({{ $sold->id }});">@lang('sold.delete')
                                                     </button>
                                                     @endrole
                                                 </td>
@@ -109,12 +109,12 @@
         function approve(a,b) {
             swal(
                 {
-                    title: 'ต้องการดำเนินการ?',
+                    title: '@lang("sold.continue")?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonClass: 'btn-danger',
-                    confirmButtonText: 'ยืนยัน',
-                    cancelButtonText: 'ยกเลิก',
+                    confirmButtonText: '@lang("sold.confirm")',
+                    cancelButtonText: '@lang("sold.cancel")',
                     closeOnConfirm: false,
                     closeOnCancel: false,
                 },
@@ -131,7 +131,7 @@
                             type: 'POST',
                             success: function () {
                                 swal({
-                                    title: 'ดำเนินการเรียบร้อยแล้ว!',
+                                    title: '@lang("sold.success")!',
                                     type: 'success',
                                     confirmButtonClass: 'btn-success',
                                 });
@@ -139,7 +139,7 @@
                             },
                             error: function () {
                                 swal({
-                                    title: 'เกิดข้อผิดพลาด ไม่อนุญาตทำรายการ',
+                                    title: '@lang("sold.error")',
                                     type: 'error',
                                     confirmButtonClass: 'btn-danger',
                                 })
@@ -147,7 +147,7 @@
                         })
                     } else {
                         swal({
-                            title: 'ดำเนินการล้มเหลว',
+                            title: '@lang("sold.error")',
                             type: 'error',
                             confirmButtonClass: 'btn-danger',
                         })
@@ -162,7 +162,7 @@
                 window.location = "{{ url('sold/edit') }}" + '/' +id;
             } else {
                 swal({
-                    title: 'ไม่พบข้อมูล',
+                    title: '@lang("sold.not")',
                     type: 'error',
                     confirmButtonClass: 'btn-danger',
                 });
@@ -178,7 +178,7 @@
                 @endif
             } else {
                 swal({
-                    title: 'ไม่พบข้อมูล',
+                    title: '@lang("sold.not")',
                     type: 'error',
                     confirmButtonClass: 'btn-danger',
                 });
@@ -188,12 +188,12 @@
         function solddelete(id) {
             swal(
                 {
-                    title: 'คุณต้องการลบ?',
+                    title: '@lang("sold.continue")?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonClass: 'btn-danger',
-                    confirmButtonText: 'ยืนยันการลบ',
-                    cancelButtonText: 'ยกเลิก',
+                    confirmButtonText: '@lang("sold.confirm")',
+                    cancelButtonText: '@lang("sold.cancel")',
                     closeOnConfirm: false,
                     closeOnCancel: false,
                 },
@@ -210,7 +210,7 @@
                             type: 'POST',
                             success: function () {
                                 swal({
-                                    title: 'ลบเรียบร้อยแล้ว!',
+                                    title: '@lang("sold.success")!',
                                     type: 'success',
                                     confirmButtonClass: 'btn-success',
                                 });
@@ -218,7 +218,7 @@
                             },
                             error: function () {
                                 swal({
-                                    title: 'เกิดข้อผิดพลาด ไม่อนุญาตทำรายการ',
+                                    title: '@lang("sold.error")',
                                     type: 'error',
                                     confirmButtonClass: 'btn-danger',
                                 })
@@ -226,7 +226,7 @@
                         })
                     } else {
                         swal({
-                            title: 'การลบล้มเหลว',
+                            title: '@lang("sold.not")',
                             type: 'error',
                             confirmButtonClass: 'btn-danger',
                         })

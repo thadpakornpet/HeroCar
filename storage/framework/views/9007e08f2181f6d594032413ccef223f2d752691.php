@@ -2,15 +2,15 @@
     <?php echo csrf_field(); ?>
     <div class="modal-content">
         <div class="modal-header">
-            <h4>แก้ไขประกาศขายรถ</h4>
+            <h4><?php echo app('translator')->getFromJson('sold.edit'); ?></h4>
         </div>
         <div class="modal-body">
             <fieldset class="border p-4">
-                <legend class="w-auto">เกี่ยวกับรถ</legend>
+                <legend class="w-auto"><?php echo app('translator')->getFromJson('sold.about'); ?></legend>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-4">
-                            <label>ยี่ห้อ :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.make'); ?> :</label>
                             <select class="form-control" name="makeid" required style="font-family: 'Pridi', serif;">
                                 <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
                                 <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -19,7 +19,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label>รุ่นรถ :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.model'); ?> :</label>
                             <select class="form-control" name="modelid" required style="font-family: 'Pridi', serif;" id="model">
                                 <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
                                 <?php $__currentLoopData = $models; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $model): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -28,7 +28,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label>ประเทศผลิต :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.country'); ?> :</label>
                             <select class="form-control" name="countryid" required style="font-family: 'Pridi', serif;" id="country">
                                 <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
                                 <?php $__currentLoopData = $countrys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-4">
-                            <label>รูปแบบรถ :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.body'); ?> :</label>
                             <select class="form-control" name="bodyid" required style="font-family: 'Pridi', serif;" id="bodytype">
                                 <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
                                 <?php $__currentLoopData = $bodys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $body): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -51,7 +51,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label>ระบบเกียร์ :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.tran'); ?> :</label>
                             <select class="form-control" name="tranid" required style="font-family: 'Pridi', serif;">
                                 <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
                                 <?php $__currentLoopData = $trans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tran): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -60,7 +60,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label>ขับเคลื่อน :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.drive'); ?> :</label>
                             <select class="form-control" name="driveid" required style="font-family: 'Pridi', serif;">
                                 <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
                                 <?php $__currentLoopData = $drives; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $drive): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -74,7 +74,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-4">
-                            <label>เครื่องยนต์ :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.engine'); ?> :</label>
                             <select class="form-control" name="engineid" required style="font-family: 'Pridi', serif;">
                                 <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
                                 <?php $__currentLoopData = $engines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $engine): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -83,7 +83,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label>เชื้อเพลิง :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.fuel'); ?> :</label>
                             <select class="form-control" name="fuelid" required style="font-family: 'Pridi', serif;">
                                 <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
                                 <?php $__currentLoopData = $fuels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fuel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -92,7 +92,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label>สี :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.color'); ?> :</label>
                             <select class="form-control" name="colorid" required style="font-family: 'Pridi', serif;">
                                 <option value="" disabled selected>--<?php echo app('translator')->getFromJson('logs.select'); ?>--</option>
                                 <?php $__currentLoopData = $colors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -106,22 +106,22 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
-                            <label>ทะเบียนรถ :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.license'); ?> :</label>
                             <input type="text" class="form-control" name="licenseno" required
                                    style="font-family: 'Pridi', serif;" value="<?php echo e($sold->licenseno); ?>">
                         </div>
                         <div class="col-md-3">
-                            <label>ปีรถ :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.year'); ?> :</label>
                             <input type="text" class="form-control" name="year" required
                                    style="font-family: 'Pridi', serif;" value="<?php echo e($sold->year); ?>">
                         </div>
                         <div class="col-md-3">
-                            <label>ระยะไมล์ :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.mile'); ?> :</label>
                             <input type="text" class="form-control" name="mile" required
                                    style="font-family: 'Pridi', serif;" value="<?php echo e($sold->miles); ?>">
                         </div>
                         <div class="col-md-3">
-                            <label>ราคา :</label>
+                            <label><?php echo app('translator')->getFromJson('sold.price'); ?> :</label>
                             <input type="text" class="form-control" name="price" required
                                    style="font-family: 'Pridi', serif;" value="<?php echo e($sold->price); ?>">
                         </div>
@@ -131,11 +131,11 @@
 
             <br/>
             <fieldset class="border p-4">
-                <legend class="w-auto">รูปภาพของรถ</legend>
+                <legend class="w-auto"><?php echo app('translator')->getFromJson('sold.img'); ?></legend>
                 <div class="form-group">
                     <div class="col-md-12">
                         <?php if(isset($imgs)): ?>
-                            <font color="red">ลบคลิปที่รูป &nbsp;</font>
+                            <font color="red"><?php echo app('translator')->getFromJson('sold.deleteimg'); ?> &nbsp;</font>
                         <?php $__currentLoopData = $imgs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <img id="targetPhoto" src="<?php echo e(asset('imgcar/'.$img->image)); ?>"
                                      alt="" width="120" height="120" onclick="img(<?php echo e($img->id); ?>);"/>
@@ -157,7 +157,7 @@
 
             <br/>
             <fieldset class="border p-4">
-                <legend class="w-auto">เสริม</legend>
+                <legend class="w-auto"><?php echo app('translator')->getFromJson('sold.feature'); ?></legend>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-12">
@@ -170,7 +170,7 @@
 
             <br/>
             <fieldset class="border p-4">
-                <legend class="w-auto">Note</legend>
+                <legend class="w-auto"><?php echo app('translator')->getFromJson('sold.note'); ?></legend>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-12">
@@ -184,7 +184,7 @@
         <div class="modal-footer">
             <input type="hidden" name="id" value="<?php echo e($sold->id); ?>">
             <button type="submit" class="btn width-200 btn-primary" id="submit-all">
-                <i class="fa fa-send mr-2"></i> แก้ไขประกาศขายรถ
+                <i class="fa fa-send mr-2"></i> <?php echo app('translator')->getFromJson('sold.edit'); ?>
             </button>
         </div>
     </div>
@@ -203,12 +203,12 @@
     function img(img) {
         swal(
             {
-                title: 'คุณต้องการลบ?',
+                title: '<?php echo app('translator')->getFromJson("sold.continue"); ?>?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonClass: 'btn-danger',
-                confirmButtonText: 'ยืนยันการลบ',
-                cancelButtonText: 'ยกเลิก',
+                confirmButtonText: '<?php echo app('translator')->getFromJson("sold.confirm"); ?>',
+                cancelButtonText: '<?php echo app('translator')->getFromJson("sold.cancel"); ?>',
                 closeOnConfirm: false,
                 closeOnCancel: false,
             },
@@ -225,7 +225,7 @@
                         type: 'POST',
                         success: function () {
                             swal({
-                                title: 'ลบเรียบร้อยแล้ว!',
+                                title: '<?php echo app('translator')->getFromJson("sold.success"); ?>!',
                                 type: 'success',
                                 confirmButtonClass: 'btn-success',
                             });
@@ -233,7 +233,7 @@
                         },
                         error: function () {
                             swal({
-                                title: 'เกิดข้อผิดพลาด ไม่อนุญาตทำรายการ',
+                                title: '<?php echo app('translator')->getFromJson("sold.error"); ?>',
                                 type: 'error',
                                 confirmButtonClass: 'btn-danger',
                             })
@@ -241,7 +241,7 @@
                     })
                 } else {
                     swal({
-                        title: 'การลบล้มเหลว',
+                        title: '<?php echo app('translator')->getFromJson("sold.not"); ?>',
                         type: 'error',
                         confirmButtonClass: 'btn-danger',
                     })
