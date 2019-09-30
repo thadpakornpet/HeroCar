@@ -71,9 +71,11 @@ class TablesController extends Controller
 
     public function bodycreate(Request $request)
     {
+        $filename = time() . str_random(10) . '.' . $request->file('image')->getClientOriginalExtension();
+        $request->file('image')->move(public_path() . '/', $filename);
         Bodytype::create([
             'name' => $request->name,
-            'name_short' => $request->name_short
+            'image' => $filename,
         ]);
         return back()->with('success', 'success');
     }
@@ -87,7 +89,13 @@ class TablesController extends Controller
     {
         $country = Bodytype::find($request->id);
         $country->name = $request->name;
-        $country->image = $request->image;
+        if ($request->file('image')) {
+            $filename = time() . str_random(10) . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path() . '/', $filename);
+            $country->image = $filename;
+        } else {
+            $country->image = $country->image;
+        }
         $country->save();
         return redirect()->to('/tables/body')->with('success', 'success');
     }
@@ -108,23 +116,21 @@ class TablesController extends Controller
     {
         Color::create([
             'name' => $request->name,
-            'name_short' => $request->name_short
         ]);
         return back()->with('success', 'success');
     }
 
     public function coloredit($id)
     {
-        return view('tables.Color_edit', ['body' => Color::find($id)]);
+        return view('tables.color_edit', ['color' => Color::find($id)]);
     }
 
     public function colorsave(Request $request)
     {
         $country = Color::find($request->id);
         $country->name = $request->name;
-        $country->name_short = $request->name_short;
         $country->save();
-        return redirect()->to('/tables/Color')->with('success', 'success');
+        return redirect()->to('/tables/color')->with('success', 'success');
     }
 
     public function drive()
@@ -132,16 +138,156 @@ class TablesController extends Controller
         $users = Drive::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.drive', compact('users'));
     }
+   
+    
+    public function drivecreate(Request $request)
+    {
+        Drive::create([
+            'name' => $request->name
+        ]);
+        return back()->with('success', 'success');
+    }
+
+    public function driveedit($id)
+    {
+        return view('tables.drive_edit', ['drive' => Drive::find($id)]);
+    }
+
+
+    public function drivedelete(Request $request)
+    {
+        Drive::find($request->id)->delete();
+        return back()->with('success', 'success');
+    }
+
+    public function drivesave(Request $request)
+    {
+        $country = Drive::find($request->id);
+        $country->name = $request->name;
+        $country->save();
+        return redirect()->to('/tables/drive')->with('success', 'success');
+    }
+
+ 
+
+
+
+    
     public function engine()
     {
         $users = Engine::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.engine', compact('users'));
     }
+
+
+    public function enginecreate(Request $request)
+    {
+        Engine::create([
+            'name' => $request->name,
+        ]);
+        return back()->with('success', 'success');
+    }
+
+
+    
+
+    public function engineedit($id)
+    {
+        return view('tables.engine_edit', ['engine' => Engine::find($id)]);
+    }
+
+    public function enginedelete(Request $request)
+    {
+        Engine::find($request->id)->delete();
+        return back()->with('success', 'success');
+    }
+
+
+    public function enginesave(Request $request)
+    {
+        $country = Engine::find($request->id);
+        $country->name = $request->name;
+        $country->save();
+        return redirect()->to('/tables/engine')->with('success', 'success');
+    }
+
+
+
+
+
+
+
+
     public function fuel()
     {
         $users = Fuel::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.fuel', compact('users'));
     }
+
+    public function fueledit($id)
+    {
+        return view('tables.fuel_edit', ['fuel' => Fuel::find($id)]);
+    }
+
+
+    public function fuelcreate(Request $request)
+    {
+        Fuel::create([
+            'name' => $request->name,
+        ]);
+        return back()->with('success', 'success');
+    }
+
+
+
+    public function fuelsave(Request $request)
+    {
+        $country = Fuel::find($request->id);
+        $country->name = $request->name;
+        $country->save();
+        return redirect()->to('/tables/fuel')->with('success', 'success');
+    }
+
+
+    public function fueldelete(Request $request)
+    {
+        Fuel::find($request->id)->delete();
+        return back()->with('success', 'success');
+    }
+
+
+
+    public function trans()
+    {
+        $users = Transmission::orderBy('id', 'DESC')->paginate($this->per_page);
+        return view('tables.trans', compact('users'));
+    }
+
+  
+
+    public function transedit($id)
+    {
+        return view('tables.trans_edit', ['trans' => Transmission::find($id)]);
+    }
+
+
+    public function transcreate(Request $request)
+    {
+        Transmission::create([
+            'name' => $request->name,
+        ]);
+        return back()->with('success', 'success');
+    }
+
+
+    public function transdelete(Request $request)
+    {
+        Transmission::find($request->id)->delete();
+        return back()->with('success', 'success');
+    }
+
+
+
     public function make()
     {
         $users = Make::orderBy('id', 'DESC')->paginate($this->per_page);
@@ -221,9 +367,5 @@ class TablesController extends Controller
         return redirect()->to('/tables/model')->with('success', 'success');
     }
 
-    public function trans()
-    {
-        $users = Transmission::orderBy('id', 'DESC')->paginate($this->per_page);
-        return view('tables.trans', compact('users'));
-    }
+   
 }

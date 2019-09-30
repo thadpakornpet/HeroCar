@@ -60,17 +60,59 @@ Route::group(['middleware' => ['CheckLoginRepeat', 'auth']], function (){
       Route::get('/color', 'TablesController@color');
       Route::post('/color/delete', 'TablesController@colordelete');
       Route::get('/color/{id}/edit', 'TablesController@coloredit');
+      
+      
+      
       Route::get('/drive', 'TablesController@drive');
+      Route::get('/drive/{id}/edit', 'TablesController@driveedit');
+      Route::post('/drive/delete', 'TablesController@drivedelete');
+
       Route::get('/engine', 'TablesController@engine');
+      Route::get('/engine/{id}/edit', 'TablesController@engineedit');
+      Route::post('/engine/delete', 'TablesController@enginedelete');
+
+
+
       Route::get('/fuel', 'TablesController@fuel');
+      Route::get('/fuel/{id}/edit', 'TablesController@fueledit');
+      Route::post('/fuel/delete', 'TablesController@fueldelete');
+
+
+
       Route::get('/make', 'TablesController@make');
       Route::get('/make/{id}/edit', 'TablesController@makeedit');
       Route::post('/make/delete', 'TablesController@makedelete');
       Route::get('/model', 'TablesController@model');
       Route::post('/model/delete', 'TablesController@modeldelete');
       Route::get('/model/{id}/edit', 'TablesController@modeledit');
+
+
       Route::get('/trans', 'TablesController@trans');
+      Route::get('/trans/{id}/edit', 'TablesController@transedit');
+      Route::post('/trans/delete', 'TablesController@transdelete');
+      
   });
+
+ 
+  Route::post('/trans/create', 'TablesController@transcreate');
+ 
+  Route::post('/trans/edit', 'TablesController@transsave');
+
+
+  Route::post('/drive/create', 'TablesController@drivecreate');
+  Route::post('/drive/edit', 'TablesController@drivesave');
+
+
+  Route::post('/engine/create', 'TablesController@enginecreate');
+  Route::post('/engine/edit', 'TablesController@enginesave');
+
+
+
+  
+  Route::post('/fuel/create', 'TablesController@fuelcreate');
+  Route::post('/fuel/edit', 'TablesController@fuelsave');
+  
+
   Route::post('/country/create', 'TablesController@countrycreate');
   Route::post('/country/edit', 'TablesController@countrysave');
   Route::post('/body/create', 'TablesController@bodycreate');
