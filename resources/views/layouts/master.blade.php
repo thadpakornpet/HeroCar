@@ -278,7 +278,7 @@
                     <li class="cui-menu-left-item cui-menu-left-submenu">
                         <a href="javascript: void(0);">
                             <span class="cui-menu-left-icon icmn-file-text"></span>
-                            <span class="cui-menu-left-title">รายงาน</span>
+                            <span class="cui-menu-left-title">@lang('master.report')</span>
                         </a>
                         <ul class="cui-menu-left-list">
                             <li class="cui-menu-left-item">
@@ -297,7 +297,7 @@
                     <li class="cui-menu-left-item">
                         <a href="#">
                             <span class="cui-menu-left-icon icmn-stats-bars"></span>
-                            <span class="cui-menu-left-title">บัญชี</span>
+                            <span class="cui-menu-left-title">@lang('master.acc')</span>
                         </a>
                     </li>
                     @endrole

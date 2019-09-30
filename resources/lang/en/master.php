@@ -29,6 +29,8 @@ return [
     'adduser' => 'Add user',
     'invite' => 'Add user by invite',
     'company' => 'Info company',
-    'ms' => 'Manage Sold'
+    'ms' => 'Manage Sold',
+    'report' => 'Report',
+    'acc' => 'Accounting'
 ];
 
