@@ -105,6 +105,7 @@
 @endsection
 @section('script')
     <script>
+        ;
         @if(Auth::user()->hasRole('super'))
         function approve(a,b) {
             swal(

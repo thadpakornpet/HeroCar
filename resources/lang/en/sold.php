@@ -30,5 +30,11 @@ return [
     'mile' => 'Miles',
     'img' => 'Images',
     'deleteimg' => 'Click image to delete',
-    'addsold' => 'Add Sold'
+    'addsold' => 'Add Sold',
+    'tran' => 'Transmission',
+    'drive' => 'Driver',
+    'engine' => 'Engine',
+    'fuel' => 'Fuel',
+    'color' => 'Color',
+    'locense' => 'License NO'
 ];

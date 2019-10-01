@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-md-4">
                             <label>@lang('sold.model') :</label>
-                            <select class="form-control" name="modelid" required style="font-family: 'Pridi', serif;" id="model" onblur="infobodytype(this.value);">
+                            <select class="form-control" name="modelid" required style="font-family: 'Pridi', serif;" id="model" onchange="infobodytype(this.value);">
                                 <option value="" disabled selected>--@lang('logs.select')--</option>
                             </select>
                         </div>
@@ -191,13 +191,14 @@
             data: {id:data[0],country:data[1]},
             type: 'POST',
             success: function(data) {
+                console.log(data['models']);
                 data['models'].forEach(function (element) {
-                    $('#model').html(
+                    $('#model').append(
                         "<option value='" + element.id + ","+ element.bodytype +"'>" + element.name + "</option>"
                     )
                 });
                 data['countrys'].forEach(function (element) {
-                    $('#country').html(
+                    $('#country').append(
                         "<option value='" + element.id + "'>" + element.name + "</option>"
                     )
                 });

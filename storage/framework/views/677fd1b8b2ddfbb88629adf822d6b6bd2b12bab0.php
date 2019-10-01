@@ -49,19 +49,19 @@
                                                 <td><?php echo e(number_format($sold->price)); ?></td>
                                                 <td>
                                                     <?php if($sold->status == 0): ?>
-                                                        <button class="btn btn-warning btn-sm" style="width: 60px">Pending</button>
+                                                        <button class="btn btn-warning btn-sm" style="width: 70px">Pending</button>
                                                     <?php endif; ?>
                                                     <?php if($sold->status == 1): ?>
-                                                        <button class="btn btn-success btn-sm" style="width: 60px">Active</button>
+                                                        <button class="btn btn-success btn-sm" style="width: 70px">Active</button>
                                                     <?php endif; ?>
                                                     <?php if($sold->status == 2): ?>
-                                                        <button class="btn btn-primary btn-sm" style="width: 60px">Sold</button>
+                                                        <button class="btn btn-primary btn-sm" style="width: 70px">Sold</button>
                                                     <?php endif; ?>
                                                     <?php if($sold->status == 3): ?>
-                                                        <button class="btn btn-secondary btn-sm" style="width: 60px">Cancel</button>
+                                                        <button class="btn btn-secondary btn-sm" style="width: 70px">Cancel</button>
                                                     <?php endif; ?>
                                                         <?php if($sold->status == 4): ?>
-                                                            <button class="btn btn-danger btn-sm" style="width: 60px">Reject</button>
+                                                            <button class="btn btn-danger btn-sm" style="width: 70px">Reject</button>
                                                         <?php endif; ?>
                                                 </td>
                                                 <td><?php echo e($sold->created_at); ?></td>
@@ -104,6 +104,7 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
     <script>
+        ;
         <?php if(Auth::user()->hasRole('super')): ?>
         function approve(a,b) {
             swal(
