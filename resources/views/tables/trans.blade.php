@@ -55,11 +55,11 @@
                                         </td>
                                         <td class="text-center">
                                             @role('super')
-                                            <a title="แก้ไข" href="{{ url('tables/Transmission/'.$user->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+                                            <a title="แก้ไข" href="{{ url('tables/trans/'.$user->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
 
                                             <a title="ลบ" onclick="deleteRow('{!! $user->id !!}')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                             @endrole
-                                        <form method="POST" class="hidden" id="formDelete{!! $user->id !!}" action="{{ url('tables/Transmission/delete') }}">
+                                        <form method="POST" class="hidden" id="formDelete{!! $user->id !!}" action="{{ url('tables/trans/delete') }}">
                                                 {!! csrf_field() !!}
                                                 <input type="hidden" value="{{ $user->id }}" name="id">
                                             </form>

@@ -4,7 +4,7 @@
     <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
             <span class="text-muted">Home ·</span>
-            <strong>Color</strong>
+            <strong>Transmission</strong>
         </span>
     </nav>
 

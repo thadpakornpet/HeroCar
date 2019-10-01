@@ -286,7 +286,13 @@ class TablesController extends Controller
         return back()->with('success', 'success');
     }
 
-
+    public function transsave(Request $request)
+    {
+        $country = Transmission::find($request->id);
+        $country->name = $request->name;
+        $country->save();
+        return redirect()->to('/tables/trans')->with('success', 'success');
+    }
 
     public function make()
     {

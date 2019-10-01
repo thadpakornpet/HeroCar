@@ -1,3 +1,6 @@
+@section('style')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+@endsection
 <form action="{{ url('/sold') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="modal-content">
@@ -125,7 +128,7 @@
                 <legend class="w-auto">@lang('sold.img')</legend>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple required/>
+                        <input type="file" class="form-control-file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -169,6 +172,7 @@
     </div>
 </form>
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 <script>
     function preview_image()
     {

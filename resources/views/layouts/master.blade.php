@@ -120,6 +120,7 @@
     <script src="{{ URL::asset('cleanui/components/menu-left/common/menu-left.cleanui.js') }}"></script>
     <script src="{{ URL::asset('cleanui/components/blog/common/blog.cleanui.js') }}"></script>
     <script src="{{ URL::asset('cleanui/components/github/common/github.cleanui.js') }}"></script>
+
 @yield('style')
 <!-- PRELOADER STYLES-->
     <style>
