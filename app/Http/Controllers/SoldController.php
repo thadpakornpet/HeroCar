@@ -23,12 +23,13 @@ class SoldController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:owner', 'permission:ALL-Plivilege'])->except(['infomodel', 'infobodytype','list','detail','manage']);
+        $this->middleware(['role:owner', 'permission:ALL-Plivilege'])->except(['infomodel', 'infobodytype', 'list', 'detail', 'manage']);
     }
 
-    public function manage(Request $request){
-        if(Auth::user()->hasRole('super')){
-            $sold = Sold::where('id',$request->input('a'))->first();
+    public function manage(Request $request)
+    {
+        if (Auth::user()->hasRole('super')) {
+            $sold = Sold::where('id', $request->input('a'))->first();
             $sold->status = $request->input('b');
             $sold->save();
         } else {
@@ -118,36 +119,50 @@ class SoldController extends Controller
             ]);
         }
 
-        if ($request->file('upload_file')) {
-            for ($i = 0; $i < count($request->file('upload_file')); $i++) {
-                $filename = time() . str_random(10) . '.' . $request->file('upload_file')[$i]->getClientOriginalExtension();
-                $request->file('upload_file')[$i]->move(public_path() . '/imgcar/', $filename);
-                chmod(public_path() . '/imgcar/' . $filename, 0777);
+        return view('sold.image', [
+            'id' => $id
+        ]);
+    }
 
-                $img = Image::make(public_path('imgcar/'.$filename));
-                $img->insert(public_path('Capture.PNG'), 'bottom-right', 10, 10);
-                $img->save(public_path('imgcar/new'.$filename));
-                chmod(public_path() . '/imgcar/new' . $filename, 0777);
-                File::delete(public_path() . '\\imgcar\\' . $filename);
+    public function addimage(Request $request)
+    {
+        if ($request->file('file')) {
+            $image = $request->file('file');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path() . '/imgcar/', $imageName);
 
-                SoldImage::create([
-                    'soldid' => $id,
-                    'image' => 'new'.$filename
-                ]);
-            }
+            chmod(public_path() . '/imgcar/' . $imageName, 0777);
+
+            $img = Image::make(public_path('imgcar/' . $imageName));
+            $img->insert(public_path('Capture.PNG'), 'bottom-right', 10, 10);
+            $img->save(public_path('imgcar/' . $imageName));
+            chmod(public_path() . '/imgcar/' . $imageName, 0777);
+
+            SoldImage::create([
+                'soldid' => $request->input('id'),
+                'image' => $imageName
+            ]);
         }
+    }
 
-        return redirect()->to('sold/list')->with('success', 'success');
+    public function deleteimage(Request $request){
+        $filename =  $request->get('filename');
+        SoldImage::where('image',$filename)->delete();
+        $path=public_path().'/imgcar/'.$filename;
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        return $filename;
     }
 
     public function list()
     {
-        if(Auth::user()->hasRole('super')){
+        if (Auth::user()->hasRole('super')) {
             $sold = Sold::orderBy('id', 'DESC')->where('status', 0)->get();
         } else {
             $sold = Sold::orderBy('id', 'DESC')->where('userid', Auth::user()->id)->get();
         }
-        return view('sold.list',[
+        return view('sold.list', [
             'solds' => $sold
         ]);
     }
@@ -210,14 +225,14 @@ class SoldController extends Controller
                 $request->file('upload_file')[$i]->move(public_path() . '/imgcar/', $filename);
                 chmod(public_path() . '/imgcar/' . $filename, 0777);
 
-                $img = Image::make(public_path('imgcar/'.$filename));
+                $img = Image::make(public_path('imgcar/' . $filename));
                 $img->insert(public_path('Capture.PNG'), 'bottom-right', 10, 10);
-                $img->save(public_path('imgcar/new'.$filename));
+                $img->save(public_path('imgcar/new' . $filename));
                 chmod(public_path() . '/imgcar/new' . $filename, 0777);
                 File::delete(public_path() . '\\imgcar\\' . $filename);
                 SoldImage::create([
                     'soldid' => $request->input('id'),
-                    'image' => 'new'.$filename
+                    'image' => 'new' . $filename
                 ]);
             }
         }

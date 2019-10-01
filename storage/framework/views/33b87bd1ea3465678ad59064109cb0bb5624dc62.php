@@ -122,23 +122,7 @@
                     </div>
                 </div>
             </fieldset>
-
-            <br/>
-            <fieldset class="border p-4">
-                <legend class="w-auto"><?php echo app('translator')->getFromJson('sold.img'); ?></legend>
-                <div class="form-group">
-                    <div class="col-md-12" id="dropzone">
-                        <!--<input type="file" class="form-control-file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple required/> -->
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <div id="image_preview"></div>
-                    </div>
-                </div>
-            </fieldset>
-
+            
             <br/>
             <fieldset class="border p-4">
                 <legend class="w-auto"><?php echo app('translator')->getFromJson('sold.feature'); ?></legend>
@@ -175,8 +159,6 @@
 <?php $__env->startSection('script'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 <script>
-    var myDropzone = new Dropzone("div#dropzone", { url: "/file/post"});
-    ;
     function preview_image()
     {
         var total_file=document.getElementById("upload_file").files.length;

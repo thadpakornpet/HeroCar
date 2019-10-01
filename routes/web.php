@@ -60,9 +60,9 @@ Route::group(['middleware' => ['CheckLoginRepeat', 'auth']], function (){
       Route::get('/color', 'TablesController@color');
       Route::post('/color/delete', 'TablesController@colordelete');
       Route::get('/color/{id}/edit', 'TablesController@coloredit');
-      
-      
-      
+
+
+
       Route::get('/drive', 'TablesController@drive');
       Route::get('/drive/{id}/edit', 'TablesController@driveedit');
       Route::post('/drive/delete', 'TablesController@drivedelete');
@@ -90,12 +90,12 @@ Route::group(['middleware' => ['CheckLoginRepeat', 'auth']], function (){
       Route::get('/trans', 'TablesController@trans');
       Route::get('/trans/{id}/edit', 'TablesController@transedit');
       Route::post('/trans/delete', 'TablesController@transdelete');
-      
+
   });
 
- 
+
   Route::post('/trans/create', 'TablesController@transcreate');
- 
+
   Route::post('/trans/edit', 'TablesController@transsave');
 
 
@@ -108,10 +108,10 @@ Route::group(['middleware' => ['CheckLoginRepeat', 'auth']], function (){
 
 
 
-  
+
   Route::post('/fuel/create', 'TablesController@fuelcreate');
   Route::post('/fuel/edit', 'TablesController@fuelsave');
-  
+
 
   Route::post('/country/create', 'TablesController@countrycreate');
   Route::post('/country/edit', 'TablesController@countrysave');
@@ -134,5 +134,7 @@ Route::group(['middleware' => ['CheckLoginRepeat', 'auth']], function (){
       Route::get('/edit/{id}', 'SoldController@edit');
       Route::post('/deleteimg', 'SoldController@deleteimg');
       Route::post('/soldedit', 'SoldController@soldedit');
+      Route::post('/image', 'SoldController@addimage');
+      Route::post('/image/delete', 'SoldController@deleteimage');
   });
 });

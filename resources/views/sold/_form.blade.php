@@ -125,21 +125,6 @@
 
             <br/>
             <fieldset class="border p-4">
-                <legend class="w-auto">@lang('sold.img')</legend>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <input type="file" class="form-control-file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple required/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <div id="image_preview"></div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <br/>
-            <fieldset class="border p-4">
                 <legend class="w-auto">@lang('sold.feature')</legend>
                 <div class="form-group">
                     <div class="row">
