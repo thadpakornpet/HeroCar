@@ -57,11 +57,11 @@
                                         </td>
                                         <td class="text-center">
                                             <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
-                                            <a title="แก้ไข" href="<?php echo e(url('tables/Transmission/'.$user->id.'/edit')); ?>" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+                                            <a title="แก้ไข" href="<?php echo e(url('tables/trans/'.$user->id.'/edit')); ?>" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
 
                                             <a title="ลบ" onclick="deleteRow('<?php echo $user->id; ?>')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                             <?php endif; ?>
-                                        <form method="POST" class="hidden" id="formDelete<?php echo $user->id; ?>" action="<?php echo e(url('tables/Transmission/delete')); ?>">
+                                        <form method="POST" class="hidden" id="formDelete<?php echo $user->id; ?>" action="<?php echo e(url('tables/trans/delete')); ?>">
                                                 <?php echo csrf_field(); ?>
 
                                                 <input type="hidden" value="<?php echo e($user->id); ?>" name="id">
