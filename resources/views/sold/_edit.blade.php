@@ -1,3 +1,6 @@
+@section('style')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+@endsection
 <form action="{{ url('/sold/soldedit') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="modal-content">
@@ -143,18 +146,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <div id="image_preview"></div>
-                    </div>
-                </div>
             </fieldset>
-
             <br/>
             <fieldset class="border p-4">
                 <legend class="w-auto">@lang('sold.feature')</legend>
@@ -189,17 +181,60 @@
         </div>
     </div>
 </form>
+<div class="modal-content">
+    <div class="modal-body">
+        <legend class="w-auto">@lang('sold.img')</legend>
+        <form method="post" action="{{url('sold/image')}}" enctype="multipart/form-data" class="dropzone" id="dropzone">
+            @csrf
+            <input type="hidden" name="id" value="{{ $sold->id }}">
+        </form>
+    </div>
+</div>
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script type="text/javascript">
+        Dropzone.options.dropzone =
+            {
+                maxFilesize: 12,
+                renameFile: function(file) {
+                    var dt = new Date();
+                    var time = dt.getTime();
+                    return time+file.name;
+                },
+                acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                addRemoveLinks: true,
+                timeout: 5000,
+                removedfile: function(file)
+                {
+                    var name = file.upload.filename;
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'POST',
+                        url: '{{ url("sold/image/delete") }}',
+                        data: {filename: name},
+                        success: function (data){
+                            console.log("File has been successfully removed!!");
+                        },
+                        error: function(e) {
+                            console.log(e);
+                        }});
+                    var fileRef;
+                    return (fileRef = file.previewElement) != null ?
+                        fileRef.parentNode.removeChild(file.previewElement) : void 0;
+                },
+                success: function(file, response)
+                {
+                    console.log(response);
+                },
+                error: function(file, response)
+                {
+                    return false;
+                }
+            };
+    </script>
 <script>
-    function preview_image()
-    {
-        var total_file=document.getElementById("upload_file").files.length;
-        for(var i=0;i<total_file;i++)
-        {
-            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' width='150' height='150'>");
-        }
-    }
-
     function img(img) {
         swal(
             {
