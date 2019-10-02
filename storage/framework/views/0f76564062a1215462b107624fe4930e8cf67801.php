@@ -2,8 +2,8 @@
 <div class="cui-layout-content">
     <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
-            <span class="text-muted">Home ·</span>
-            <strong>Drive Type</strong>
+            <span class="text-muted"><?php echo app('translator')->getFromJson('logs.home'); ?> ·</span>
+            <strong><?php echo app('translator')->getFromJson('tables.drive'); ?></strong>
         </span>
     </nav>
 
@@ -14,21 +14,21 @@
                 <span class="cui-utils-title">
                     <strong>
                         <?php if(count($users)>0): ?>
-                        รายการ
+                            <?php echo app('translator')->getFromJson('logs.list'); ?>
                         <?php echo e(($users->currentPage() - 1) * 20 + 1); ?> -
                         <?php echo e(min( $users->total(), $users->currentPage() * 20)); ?>
 
-                        จาก
+                            <?php echo app('translator')->getFromJson('logs.from'); ?>
                         <?php echo e($users->total()); ?>
 
                         <?php else: ?>
-                        รายการ
+                            <?php echo app('translator')->getFromJson('logs.listofuser'); ?>
                         <?php endif; ?>
                     </strong>
                 </span>
 
                 <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
-                <a href="" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#createbody">&nbsp;เพิ่ม</a>
+                <a href="" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#createbody">&nbsp;<?php echo app('translator')->getFromJson('tables.create'); ?></a>
                 <?php endif; ?>
             </div>
             <div class="card-body">
@@ -39,11 +39,11 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            ชื่อ
+                                            <?php echo app('translator')->getFromJson('tables.name'); ?>
                                         </th>
                                         <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
                                         <th class="text-center">
-                                            จัดการ
+                                            <?php echo app('translator')->getFromJson('tables.manage'); ?>
                                         </th>
                                         <?php endif; ?>
                                     </tr>
@@ -71,7 +71,7 @@
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                     <tr>
                                         <td colspan="2" class="text-center">
-                                            ไม่พบข้อมูล
+                                            <?php echo app('translator')->getFromJson('tables.empty'); ?>
                                         </td>
                                     </tr>
                                     <?php endif; ?>
@@ -97,7 +97,7 @@
         <?php echo csrf_field(); ?>
         <div class="modal-content">
             <div class="modal-header">
-                <h4>เพิ่มประเภทขับขี่</h4>
+                <h4><?php echo app('translator')->getFromJson('tables.add'); ?></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -106,11 +106,11 @@
                 <div class="form-group">
                     <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อรูปแบบ" name="name" required/>
                 </div>
-               
+
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn width-200 btn-primary">
-                    <i class="fa fa-send mr-2"></i> บันทึก
+                    <i class="fa fa-send mr-2"></i> <?php echo app('translator')->getFromJson('tables.save'); ?>
                 </button>
             </div>
         </div>

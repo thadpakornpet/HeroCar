@@ -3,8 +3,8 @@
 <div class="cui-layout-content">
     <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
-            <span class="text-muted">Home ·</span>
-            <strong>Make Type</strong>
+            <span class="text-muted">@lang('logs.home') ·</span>
+            <strong>@lang('tables.make')</strong>
         </span>
     </nav>
 
@@ -15,19 +15,19 @@
                 <span class="cui-utils-title">
                     <strong>
                         @if(count($users)>0)
-                        รายการ
+                            @lang('logs.list')
                         {{($users->currentPage() - 1) * 20 + 1 }} -
                         {{min( $users->total(), $users->currentPage() * 20)}}
-                        จาก
+                            @lang('logs.from')
                         {{$users->total()}}
                         @else
-                        รายการ
+                            @lang('logs.listofuser')
                         @endif
                     </strong>
                 </span>
 
                 @role('super')
-                <a href="" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#createbody">&nbsp;เพิ่ม</a>
+                <a href="" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#createbody">&nbsp;@lang('tables.create')</a>
                 @endrole
             </div>
             <div class="card-body">
@@ -38,17 +38,17 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            ชื่อ
+                                            @lang('tables.name')
                                         </th>
                                         <th>
-                                            ประเทศ
+                                            @lang('tables.couuntry')
                                         </th>
                                         <th>
-                                            รูป
+                                            @lang('tables.img')
                                         </th>
                                         @role('super')
                                         <th class="text-center">
-                                            จัดการ
+                                            @lang('tables.img')
                                         </th>
                                         @endrole
                                     </tr>
@@ -80,7 +80,7 @@
                                     @empty
                                     <tr>
                                         <td colspan="2" class="text-center">
-                                            ไม่พบข้อมูล
+                                            @lang('tables.empty')
                                         </td>
                                     </tr>
                                     @endforelse
@@ -105,18 +105,18 @@
         @csrf
         <div class="modal-content">
             <div class="modal-header">
-                <h4>เพิ่มข้อมูลยี่ห้อรถ</h4>
+                <h4>@lang('tables.add')</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="">ชื่อยี่ห้อ</label>
+                    <label for="">@lang('tables.model')</label>
                     <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อยี่ห้อ" name="name" required/>
                 </div>
                 <div class="form-group">
-                        <label for="">ประเทศ</label>
+                        <label for="">@lang('tables.couuntry')</label>
                     <select name="country_id" style="font-family: 'Pridi', serif;" class="form-control" required>
                         @foreach($country as $c)
                     <option value="{{ $c->id }}">{{ $c->name }}</option>
@@ -124,13 +124,13 @@
                     </select>
                 </div>
                 <div class="form-group">
-                        <label for="">โลโก้ยี่ห้อ</label>
+                        <label for="">@lang('tables.logo')</label>
                     <input type="file" class="form-control" name="logo" required/>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn width-200 btn-primary">
-                    <i class="fa fa-send mr-2"></i> บันทึก
+                    <i class="fa fa-send mr-2"></i> @lang('tables.save')
                 </button>
             </div>
         </div>

@@ -130,7 +130,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <textarea name="feature" placeholder="กรุณาระบุอุปกรณ์เสริม (หากมี)" class="form-control"
-                                      rows="5"></textarea>
+                                      rows="5" style="font-family: 'Pridi', serif;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <textarea name="note" placeholder="บันทึกข้อมูลเกี่ยวกับรายละเอียดของรถที่คุณต้องการบอกผู้ซื้อ" class="form-control"
-                                      rows="5"></textarea>
+                                      rows="5" style="font-family: 'Pridi', serif;"></textarea>
                         </div>
                     </div>
                 </div>

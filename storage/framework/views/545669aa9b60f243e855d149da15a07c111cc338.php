@@ -3,7 +3,7 @@
     <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
             <span class="text-muted"><?php echo app('translator')->getFromJson('logs.home'); ?> ·</span>
-            <strong><?php echo app('translator')->getFromJson('tables.tran'); ?></strong>
+            <strong><?php echo app('translator')->getFromJson('tables.body'); ?></strong>
         </span>
     </nav>
 
@@ -41,6 +41,9 @@
                                         <th>
                                             <?php echo app('translator')->getFromJson('tables.name'); ?>
                                         </th>
+                                        <th>
+                                            <?php echo app('translator')->getFromJson('tables.img'); ?>
+                                        </th>
                                         <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
                                         <th class="text-center">
                                             <?php echo app('translator')->getFromJson('tables.manage'); ?>
@@ -55,13 +58,16 @@
                                             <?php echo e($user->name); ?>
 
                                         </td>
+                                        <td>
+                                            <img src="<?php echo e(asset($user->image)); ?>">
+                                        </td>
                                         <td class="text-center">
                                             <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
-                                            <a title="แก้ไข" href="<?php echo e(url('tables/trans/'.$user->id.'/edit')); ?>" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+                                            <a title="แก้ไข" href="<?php echo e(url('tables/body/'.$user->id.'/edit')); ?>" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
 
                                             <a title="ลบ" onclick="deleteRow('<?php echo $user->id; ?>')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                             <?php endif; ?>
-                                        <form method="POST" class="hidden" id="formDelete<?php echo $user->id; ?>" action="<?php echo e(url('tables/trans/delete')); ?>">
+                                        <form method="POST" class="hidden" id="formDelete<?php echo $user->id; ?>" action="<?php echo e(url('tables/body/delete')); ?>">
                                                 <?php echo csrf_field(); ?>
 
                                                 <input type="hidden" value="<?php echo e($user->id); ?>" name="id">
@@ -93,7 +99,7 @@
 
 <div class="modal fade modal-size-large" id="createbody" tabindex="-1" role="dialog" aria-hidden="true">
 <div class="modal-dialog" role="document">
-<form action="<?php echo e(url('trans/create')); ?>" method="post">
+<form action="<?php echo e(url('body/create')); ?>" method="post" enctype="multipart/form-data">
         <?php echo csrf_field(); ?>
         <div class="modal-content">
             <div class="modal-header">
@@ -104,9 +110,11 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อรูปแบบ" name="name" required/>
+                    <input type="text" style="font-family: 'Pridi', serif;" class="form-control" placeholder="ชื่อรูปแบบ" name="name" required/>
                 </div>
-
+                <div class="form-group">
+                    <input type="file" class="form-control" name="image" required/>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn width-200 btn-primary">
@@ -128,4 +136,4 @@
 </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\HeroCar\resources\views/tables/trans.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\HeroCar\resources\views/tables/body.blade.php ENDPATH**/ ?>

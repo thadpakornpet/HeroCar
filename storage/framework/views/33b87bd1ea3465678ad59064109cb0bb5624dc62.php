@@ -130,7 +130,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <textarea name="feature" placeholder="กรุณาระบุอุปกรณ์เสริม (หากมี)" class="form-control"
-                                      rows="5"></textarea>
+                                      rows="5" style="font-family: 'Pridi', serif;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <textarea name="note" placeholder="บันทึกข้อมูลเกี่ยวกับรายละเอียดของรถที่คุณต้องการบอกผู้ซื้อ" class="form-control"
-                                      rows="5"></textarea>
+                                      rows="5" style="font-family: 'Pridi', serif;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -159,15 +159,6 @@
 <?php $__env->startSection('script'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 <script>
-    function preview_image()
-    {
-        var total_file=document.getElementById("upload_file").files.length;
-        for(var i=0;i<total_file;i++)
-        {
-            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' width='150' height='150'>");
-        }
-    }
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

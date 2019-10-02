@@ -154,7 +154,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <textarea name="feature" placeholder="กรุณาระบุอุปกรณ์เสริม (หากมี)" class="form-control"
-                                      rows="5"><?php if(isset($fea)): ?><?php echo e($fea->name); ?><?php endif; ?></textarea>
+                                      rows="5" style="font-family: 'Pridi', serif;"><?php if(isset($fea)): ?><?php echo e($fea->name); ?><?php endif; ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <textarea name="note" placeholder="บันทึกข้อมูลเกี่ยวกับรายละเอียดของรถที่คุณต้องการบอกผู้ซื้อ" class="form-control"
-                                      rows="5" ><?php echo e($sold->soldnote); ?></textarea>
+                                      rows="5" style="font-family: 'Pridi', serif;"><?php echo e($sold->soldnote); ?></textarea>
                         </div>
                     </div>
                 </div>

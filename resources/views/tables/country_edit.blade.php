@@ -3,8 +3,8 @@
 <div class="cui-layout-content">
     <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
-            <span class="text-muted">Home ·</span>
-            <strong>Country</strong>
+            <span class="text-muted">@lang('logs.home') ·</span>
+            <strong>@lang('tables.couuntry')</strong>
         </span>
     </nav>
 
@@ -19,7 +19,7 @@
                                 @csrf
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4>แก้ไขข้อมูลประเทศ</h4>
+                                        <h4>@lang('tables.edit')</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -31,9 +31,9 @@
                                     </div>
                                     <div class="modal-footer">
                                         <input type="hidden" name="id" value="{{ $country->id }}">
-                                        <a href="{{ url('tables/country') }}" class="btn width-200 btn-danger">กลับ</a>
+                                        <a href="{{ url('tables/country') }}" class="btn width-200 btn-danger">@lang('tables.back')</a>
                                         <button type="submit" class="btn width-200 btn-primary">
-                                            <i class="fa fa-send mr-2"></i> บันทึก
+                                            <i class="fa fa-send mr-2"></i> @lang('tables.save')
                                         </button>
                                     </div>
                                 </div>
