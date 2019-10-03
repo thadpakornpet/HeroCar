@@ -3,8 +3,9 @@
 <div class="cui-layout-content">
     <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
-            <span class="text-muted">@lang('logs.home') ·</span>
-            <strong>@lang('tables.body')</strong>
+        <span class="text-muted">@lang('model.home') ·</span>
+
+<strong>@lang('model.model')</strong>
         </span>
     </nav>
 
@@ -19,15 +20,15 @@
                                 @csrf
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4>@lang('tables.edit')</h4>
+                                        <h4>@lang('model.modeledit')</h4>
                                     </div>
                                     <div class="modal-body">
                                             <div class="form-group">
-                                                    <label>@lang('tables.model')</label>
+                                                    <label>@lang('model.name')</label>
                                             <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อรุ่นรถ" name="name" required value="{{ $model->name }}"/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>@lang('tables.body')</label>
+                                                    <label>@lang('model.cartype')</label>
                                                     <select name="bodytype" style="font-family: 'Pridi', serif;" class="form-control" required>
                                                             @foreach($body as $b)
                                                         <option value="{{ $b->id }}" @if($model->bodytype == $b->id) selected @endif>{{ $b->name }}</option>
@@ -35,7 +36,7 @@
                                                         </select>
                                                 </div>
                                                 <div class="form-group">
-                                                        <label>@lang('tables.make')</label>
+                                                        <label>@lang('model.carbrand')</label>
                                                         <select name="makeid" style="font-family: 'Pridi', serif;" class="form-control" required>
                                                                 @foreach($make as $m)
                                                             <option value="{{ $m->id }}" @if($model->makeid == $m->id) selected @endif>{{ $m->name }}</option>
@@ -45,9 +46,9 @@
                                     </div>
                                     <div class="modal-footer">
                                         <input type="hidden" name="id" value="{{ $model->id }}">
-                                        <a href="{{ url('tables/model') }}" class="btn width-200 btn-danger">@lang('tables.back')</a>
+                                        <a href="{{ url('tables/model') }}" class="btn width-200 btn-danger">@lang('model.back')</a>
                                         <button type="submit" class="btn width-200 btn-primary">
-                                            <i class="fa fa-send mr-2"></i> @lang('tables.save')
+                                            <i class="fa fa-send mr-2"></i> @lang('model.submit')
                                         </button>
                                     </div>
                                 </div>

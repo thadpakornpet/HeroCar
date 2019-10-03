@@ -3,8 +3,9 @@
 <div class="cui-layout-content">
     <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
-            <span class="text-muted">@lang('logs.home') ·</span>
-            <strong>@lang('tables.model')</strong>
+        <span class="text-muted">@lang('model.home') ·</span>
+
+<strong>@lang('model.model')</strong>
         </span>
     </nav>
 
@@ -15,19 +16,19 @@
                 <span class="cui-utils-title">
                     <strong>
                         @if(count($users)>0)
-                            @lang('logs.list')
+                        @lang('model.list')
                         {{($users->currentPage() - 1) * 20 + 1 }} -
                         {{min( $users->total(), $users->currentPage() * 20)}}
-                            @lang('logs.from')
+                        @lang('model.form')
                         {{$users->total()}}
                         @else
-                            @lang('logs.listofuser')
+                        @lang('model.list')
                         @endif
                     </strong>
                 </span>
 
                 @role('super')
-                <a href="" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#createbody">&nbsp;@lang('tables.create')</a>
+                <a href="" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#createbody">&nbsp;@lang('model.add')</a>
                 @endrole
             </div>
             <div class="card-body">
@@ -38,17 +39,17 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            @lang('tables.name')
+                                        @lang('model.home')
                                         </th>
                                         <th>
-                                            @lang('tables.body')
+                                        @lang('model.cartype')
                                             </th>
                                             <th>
-                                                @lang('tables.make')
+                                            @lang('model.carbrand')
                                                 </th>
                                         @role('super')
                                         <th class="text-center">
-                                            @lang('tables.manage')
+                                        @lang('model.manage')
                                         </th>
                                         @endrole
                                     </tr>
@@ -67,9 +68,9 @@
                                                 </td>
                                         <td class="text-center">
                                             @role('super')
-                                            <a title="แก้ไข" href="{{ url('tables/model/'.$user->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+                                            <a title="@lang('model.edit')" href="{{ url('tables/model/'.$user->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
 
-                                            <a title="ลบ" onclick="deleteRow('{!! $user->id !!}')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                            <a title="@lang('model.delete')" onclick="deleteRow('{!! $user->id !!}')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                             @endrole
                                         <form method="POST" class="hidden" id="formDelete{!! $user->id !!}" action="{{ url('tables/model/delete') }}">
                                                 {!! csrf_field() !!}
@@ -80,7 +81,7 @@
                                     @empty
                                     <tr>
                                         <td colspan="4" class="text-center">
-                                            @lang('tables.empty')
+                                        @lang('model.error')
                                         </td>
                                     </tr>
                                     @endforelse
@@ -105,18 +106,18 @@
         @csrf
         <div class="modal-content">
             <div class="modal-header">
-                <h4>@lang('tables.add')</h4>
+                <h4>@lang('model.create')</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>@lang('tables.model')</label>
-                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อรุ่นรถ" name="name" required/>
+                    <label>@lang('model.name')</label>
+                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="@lang('model.name')" name="name" required/>
                 </div>
                 <div class="form-group">
-                    <label>@lang('tables.body')</label>
+                    <label>@lang('model.cartype')</label>
                     <select name="bodytype" style="font-family: 'Pridi', serif;" class="form-control" required>
                             @foreach($body as $b)
                         <option value="{{ $b->id }}">{{ $b->name }}</option>
@@ -124,7 +125,7 @@
                         </select>
                 </div>
                 <div class="form-group">
-                        <label>@lang('tables.make')</label>
+                        <label>@lang('model.carbrand')</label>
                         <select name="makeid" style="font-family: 'Pridi', serif;" class="form-control" required>
                                 @foreach($make as $m)
                             <option value="{{ $m->id }}">{{ $m->name }}</option>
@@ -134,7 +135,7 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn width-200 btn-primary">
-                    <i class="fa fa-send mr-2"></i> @lang('tables.save')
+                    <i class="fa fa-send mr-2"></i> @lang('model.submit')
                 </button>
             </div>
         </div>
@@ -144,7 +145,7 @@
 
 <script>
     function deleteRow(id) {
-        var r = confirm("คุณค้องการลบข้อมูล ?");
+        var r = confirm("@lang('model.confirm') ?");
         if (r) {
             $("#formDelete" + id).submit();
         }

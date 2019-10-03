@@ -3,8 +3,9 @@
 <div class="cui-layout-content">
     <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
-            <span class="text-muted">@lang('logs.home') ·</span>
-            <strong>@lang('tables.engine')</strong>
+        <span class="text-muted">@lang('engine.home') ·</span>
+
+<strong>@lang('engine.engine')</strong>
         </span>
     </nav>
 
@@ -19,19 +20,19 @@
                                 @csrf
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4>@lang('tables.edit')</h4>
+                                        <h4> @lang('engine.engineedit')</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อสี" name="name" value="{{ $engine->name }}" required/>
+                                            <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder=" @lang('engine.name')" name="name" value="{{ $engine->name }}" required/>
                                         </div>
-
+                                       
                                     </div>
                                     <div class="modal-footer">
                                         <input type="hidden" name="id" value="{{ $engine->id }}">
-                                        <a href="{{ url('tables/engine') }}" class="btn width-200 btn-danger">@lang('tables.back')</a>
+                                        <a href="{{ url('tables/engine') }}" class="btn width-200 btn-danger"> @lang('engine.back')</a>
                                         <button type="submit" class="btn width-200 btn-primary">
-                                            <i class="fa fa-send mr-2"></i> @lang('tables.save')
+                                            <i class="fa fa-send mr-2"></i> @lang('engine.submit')
                                         </button>
                                     </div>
                                 </div>

@@ -2,8 +2,11 @@
 <div class="cui-layout-content">
     <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
-            <span class="text-muted"><?php echo app('translator')->getFromJson('logs.home'); ?> ·</span>
-            <strong><?php echo app('translator')->getFromJson('tables.couuntry'); ?></strong>
+            <!-- <span class="text-muted">Home ·</span> -->
+            <span class="text-muted"><?php echo app('translator')->getFromJson('country.home'); ?> ·</span>
+
+            <strong><?php echo app('translator')->getFromJson('country.country'); ?></strong>
+
         </span>
     </nav>
 
@@ -14,21 +17,25 @@
                 <span class="cui-utils-title">
                     <strong>
                         <?php if(count($users)>0): ?>
-                            <?php echo app('translator')->getFromJson('logs.list'); ?>
+                        <?php echo app('translator')->getFromJson('country.list'); ?>
+                      
                         <?php echo e(($users->currentPage() - 1) * 20 + 1); ?> -
                         <?php echo e(min( $users->total(), $users->currentPage() * 20)); ?>
 
-                            <?php echo app('translator')->getFromJson('logs.from'); ?>
+                        <?php echo app('translator')->getFromJson('country.form'); ?>
+                      
                         <?php echo e($users->total()); ?>
 
                         <?php else: ?>
-                            <?php echo app('translator')->getFromJson('logs.listofuser'); ?>
+                        <?php echo app('translator')->getFromJson('country.countryList'); ?>
+                      
                         <?php endif; ?>
                     </strong>
                 </span>
 
                 <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
-                <a href="" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#createcountry">&nbsp;<?php echo app('translator')->getFromJson('tables.create'); ?></a>
+                                        
+                <a href="" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#createcountry">&nbsp;<?php echo app('translator')->getFromJson('country.add'); ?></a>
                 <?php endif; ?>
             </div>
             <div class="card-body">
@@ -39,14 +46,17 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <?php echo app('translator')->getFromJson('tables.name'); ?>
+                                        <?php echo app('translator')->getFromJson('country.fullname'); ?>
+                                          
                                         </th>
                                         <th>
-                                            <?php echo app('translator')->getFromJson('tables.names'); ?>
+                                        <?php echo app('translator')->getFromJson('country.shotname'); ?>
+                                          
                                         </th>
                                         <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
                                         <th class="text-center">
-                                            <?php echo app('translator')->getFromJson('tables.manage'); ?>
+                                        <?php echo app('translator')->getFromJson('country.manage'); ?>
+                                          
                                         </th>
                                         <?php endif; ?>
                                     </tr>
@@ -78,7 +88,8 @@
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                     <tr>
                                         <td colspan="5" class="text-center">
-                                            <?php echo app('translator')->getFromJson('tables.empty'); ?>
+                                        <?php echo app('translator')->getFromJson('country.error'); ?>
+                                            
                                         </td>
                                     </tr>
                                     <?php endif; ?>
@@ -104,22 +115,22 @@
         <?php echo csrf_field(); ?>
         <div class="modal-content">
             <div class="modal-header">
-                <h4><?php echo app('translator')->getFromJson('tables.add'); ?></h4>
+                <h4><?php echo app('translator')->getFromJson('country.create'); ?></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อประเทศ(เต็ม)" name="name" required/>
+                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="<?php echo app('translator')->getFromJson('country.fullname'); ?>" name="name" required/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="ชื่อประเทศ(ย่อ)" name="name_short" required/>
+                    <input type="text" class="form-control" style="font-family: 'Pridi', serif;" placeholder="<?php echo app('translator')->getFromJson('country.shotname'); ?>" name="name_short" required/>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn width-200 btn-primary">
-                    <i class="fa fa-send mr-2"></i> <?php echo app('translator')->getFromJson('tables.save'); ?>
+                    <i class="fa fa-send mr-2"></i><?php echo app('translator')->getFromJson('country.submit'); ?>
                 </button>
             </div>
         </div>
@@ -129,7 +140,7 @@
 
 <script>
     function deleteRow(id) {
-        var r = confirm("คุณค้องการลบข้อมูล ?");
+        var r = confirm("<?php echo app('translator')->getFromJson('country.confirm'); ?>?");
         if (r) {
             $("#formDelete" + id).submit();
         }
