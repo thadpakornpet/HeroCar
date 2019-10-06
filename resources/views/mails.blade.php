@@ -35,7 +35,7 @@ td {
                             <th  width="20%">@lang('mails.subject')</th>
                             <th class="no-sort width-10"  width="5%"></th>
                             <th class="no-sort width-50"  width="15%">@lang('mails.by')</th>
-                            <th class="no-sort width-50"  width="10%"></th>
+                            <th class="no-sort width-50"  width="10%">Created</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,8 +56,8 @@ td {
                             <th>@lang('mails.to')</th>
                             <th>@lang('mails.subject')</th>
                             <th></th>
-                            <th></th>
-                            <th></th>
+                            <th>@lang('mails.by')</th>
+                            <th>Created</th>
                         </tr>
                     </tfoot>
                 </table>

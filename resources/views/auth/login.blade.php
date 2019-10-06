@@ -12,8 +12,8 @@
                             <li class="list-inline-item"><a href="{{ route('login') }}"><font color="black">@lang('login.login')</font></a></li>
                             <li class="ropdown-toggle text-nowrap list-inline-item" data-toggle="dropdown" aria-expanded="false"><a href="javascript: void(0);"><font color="black">@lang('login.language')</font></a></li>
                             <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" href="{{ url('locale/th') }}"><font color="black">@lang('login.th')</font></a>
-                                <a class="dropdown-item" href="{{ url('locale/en') }}"><font color="black">@lang('login.en')</font></a>
+                                <a class="dropdown-item" href="{{ url('locale/th') }}"><img src="{{ asset('thailand-flag.gif') }}" class="cui-avatar cui-avatar-border-white cui-avatar-25"> <font color="black">@lang('login.th')</font></a>
+                                <a class="dropdown-item" href="{{ url('locale/en') }}"><img src="{{ asset('300px-Flag_of_the_United_Kingdom.svg.png') }}" class="cui-avatar cui-avatar-border-white cui-avatar-25"> <font color="black">@lang('login.en')</font></a>
                             </div>
 
                         </ul>
@@ -161,6 +161,7 @@
                                     @endif
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

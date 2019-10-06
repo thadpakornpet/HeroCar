@@ -19,21 +19,21 @@
                     <strong>
                         @if(count($users)>0)
                         @lang('country.list')
-                      
+
                         {{($users->currentPage() - 1) * 20 + 1 }} -
                         {{min( $users->total(), $users->currentPage() * 20)}}
                         @lang('country.form')
-                      
+
                         {{$users->total()}}
                         @else
                         @lang('country.countryList')
-                      
+
                         @endif
                     </strong>
                 </span>
 
                 @role('super')
-                                        
+
                 <a href="" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#createcountry">&nbsp;@lang('country.add')</a>
                 @endrole
             </div>
@@ -46,16 +46,16 @@
                                     <tr>
                                         <th>
                                         @lang('country.fullname')
-                                          
+
                                         </th>
                                         <th>
                                         @lang('country.shotname')
-                                          
+
                                         </th>
                                         @role('super')
                                         <th class="text-center">
                                         @lang('country.manage')
-                                          
+
                                         </th>
                                         @endrole
                                     </tr>
@@ -64,7 +64,7 @@
                                     @forelse($users as $user)
                                     <tr>
                                         <td>
-                                            {{ $user->name }}
+                                            {{ str_replace('ประเทศ', '', $user->name) }}
                                         </td>
                                         <td>
                                             {!! $user->name_short !!}
@@ -85,7 +85,7 @@
                                     <tr>
                                         <td colspan="5" class="text-center">
                                         @lang('country.error')
-                                            
+
                                         </td>
                                     </tr>
                                     @endforelse

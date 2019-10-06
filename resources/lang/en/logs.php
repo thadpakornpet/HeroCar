@@ -62,5 +62,6 @@ return [
     'd' => 'Dashboard',
     'provider' => 'Provider',
     'invite' => 'Invite',
-    'register' => 'Register'
+    'register' => 'Register',
+    'country' => 'Country'
 ];

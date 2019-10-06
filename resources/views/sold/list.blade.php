@@ -37,7 +37,7 @@
                                         @foreach($solds as $sold)
                                             <tr>
                                                 <td>
-                                                    <button class="btn btn-sm btn-rounded btn-outline-primary" onclick="getinfo({{ $sold->id }})";>
+                                                    <button class="btn btn-sm btn-rounded btn-outline-primary" style="display:inline;width: 100px;" onclick="getinfo({{ $sold->id }})";>
                                                         @lang('sold.detail')
                                                     </button>
                                                 </td>
@@ -46,23 +46,23 @@
                                                 <td>{{ $sold->getNameMake->name }}</td>
                                                 <td>{{ $sold->getNameModel->name }}</td>
                                                 <td>{{ $sold->getNameBodyType->name }}</td>
-                                                <td>@if(str_replace('_', '-', app()->getLocale()) == "th") {{ $sold->getNameCountry->name }} @else {{ $sold->getNameCountry->name_short }} @endif</td>
+                                                <td>@if(str_replace('_', '-', app()->getLocale()) == "th") {{ str_replace('ประเทศ', '', $sold->getNameCountry->name) }} @else {{ str_replace('ประเทศ', '', $sold->getNameCountry->short) }} @endif</td>
                                                 <td>{{ number_format($sold->price) }}</td>
                                                 <td>
                                                     @if($sold->status == 0)
-                                                        <button class="btn btn-warning btn-sm" style="width: 70px">Pending</button>
+                                                        <button class="btn btn-warning btn-sm" style="width: 80px;">Pending</button>
                                                     @endif
                                                     @if($sold->status == 1)
-                                                        <button class="btn btn-success btn-sm" style="width: 70px">Active</button>
+                                                        <button class="btn btn-success btn-sm" style="width: 80px;">Active</button>
                                                     @endif
                                                     @if($sold->status == 2)
-                                                        <button class="btn btn-primary btn-sm" style="width: 70px">Sold</button>
+                                                        <button class="btn btn-primary btn-sm" style="width: 80px;">Sold</button>
                                                     @endif
                                                     @if($sold->status == 3)
-                                                        <button class="btn btn-secondary btn-sm" style="width: 70px">Cancel</button>
+                                                        <button class="btn btn-secondary btn-sm" style="width: 80px;">Cancel</button>
                                                     @endif
                                                         @if($sold->status == 4)
-                                                            <button class="btn btn-danger btn-sm" style="width: 70px">Reject</button>
+                                                            <button class="btn btn-danger btn-sm" style="width: 80px;">Reject</button>
                                                         @endif
                                                 </td>
                                                 <td>{{ $sold->created_at }}</td>
@@ -70,24 +70,42 @@
                                                 <td>
                                                     @role('owner')
                                                     @if($sold->status == 0 || $sold->status == 1)
-                                                        <button class="btn btn-rounded btn-sm btn-outline-secondary" onclick="soldedit({{ $sold->id }});">
-                                                            @lang('sold.edit')
-                                                        </button>
-                                                        <button class="btn btn-rounded btn-sm btn-outline-danger"
-                                                                onclick="solddelete({{ $sold->id }});">@lang('sold.delete')
-                                                        </button>
+                                                        <div class="cui-topbar-item">
+                                                            <div class="dropdown cui-topbar-avatar-dropdown">
+                                                                <button type="button" style="width: 80px;" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                                                    Actions
+                                                                </button>
+                                                                <div class="dropdown-menu" role="menu">
+                                                                    <button class="btn btn-rounded btn-sm btn-outline-secondary dropdown-item" onclick="soldedit({{ $sold->id }});">
+                                                                        @lang('sold.edit')
+                                                                    </button>
+                                                                    <button class="btn btn-rounded btn-sm btn-outline-danger dropdown-item"
+                                                                            onclick="solddelete({{ $sold->id }});">@lang('sold.delete')
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @endif
                                                     @endrole
                                                     @role('super')
-                                                    <button class="btn btn-rounded btn-sm btn-outline-success" onclick="approve({{ $sold->id }},1);">
-                                                        @lang('sold.approve')
-                                                    </button>
-                                                    <button class="btn btn-rounded btn-sm btn-outline-warning" onclick="approve({{ $sold->id }},4);">
-                                                        @lang('sold.inapprove')
-                                                    </button>
-                                                    <button class="btn btn-rounded btn-sm btn-outline-danger"
-                                                            onclick="solddelete({{ $sold->id }});">@lang('sold.delete')
-                                                    </button>
+                                                    <div class="cui-topbar-item">
+                                                        <div class="dropdown cui-topbar-avatar-dropdown">
+                                                            <button type="button" style="width: 80px;" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                                                Actions
+                                                            </button>
+                                                            <div class="dropdown-menu" role="menu">
+                                                                <button class="btn btn-rounded btn-sm btn-outline-success dropdown-item" onclick="approve({{ $sold->id }},1);">
+                                                                    @lang('sold.approve')
+                                                                </button>
+                                                                <button class="btn btn-rounded btn-sm btn-outline-warning dropdown-item" onclick="approve({{ $sold->id }},4);">
+                                                                    @lang('sold.inapprove')
+                                                                </button>
+                                                                <button class="btn btn-rounded btn-sm btn-outline-danger dropdown-item"
+                                                                        onclick="solddelete({{ $sold->id }});">@lang('sold.delete')
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     @endrole
                                                 </td>
                                             </tr>

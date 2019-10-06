@@ -47,6 +47,10 @@ return [
     'fuel' => 'Fuel',
     'make' => 'Brand',
     'model' => 'Model',
-    'tran' => 'Transmission'
+    'tran' => 'Transmission',
+    'thaipeople' => 'Have you address in Thailand?',
+    'yes' => 'Yes',
+    'no' => 'No',
+    'fa' => 'Favorite'
 ];
 

@@ -24,6 +24,8 @@ class TablesController extends Controller
 
     public function country()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'country');
         $users = Country::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.country', compact('users'));
     }
@@ -45,6 +47,8 @@ class TablesController extends Controller
 
     public function countryedit($id)
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'country');
         return view('tables.country_edit', ['country' => Country::find($id)]);
     }
 
@@ -59,6 +63,8 @@ class TablesController extends Controller
 
     public function body()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'body');
         $users = Bodytype::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.body', compact('users'));
     }
@@ -82,6 +88,8 @@ class TablesController extends Controller
 
     public function bodyedit($id)
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'body');
         return view('tables.body_edit', ['body' => Bodytype::find($id)]);
     }
 
@@ -102,6 +110,8 @@ class TablesController extends Controller
 
     public function color()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'color');
         $users = Color::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.color', compact('users'));
     }
@@ -122,6 +132,8 @@ class TablesController extends Controller
 
     public function coloredit($id)
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'color');
         return view('tables.color_edit', ['color' => Color::find($id)]);
     }
 
@@ -135,11 +147,13 @@ class TablesController extends Controller
 
     public function drive()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'drive');
         $users = Drive::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.drive', compact('users'));
     }
-   
-    
+
+
     public function drivecreate(Request $request)
     {
         Drive::create([
@@ -150,6 +164,8 @@ class TablesController extends Controller
 
     public function driveedit($id)
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'drive');
         return view('tables.drive_edit', ['drive' => Drive::find($id)]);
     }
 
@@ -168,13 +184,15 @@ class TablesController extends Controller
         return redirect()->to('/tables/drive')->with('success', 'success');
     }
 
- 
 
 
 
-    
+
+
     public function engine()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'engine');
         $users = Engine::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.engine', compact('users'));
     }
@@ -189,10 +207,12 @@ class TablesController extends Controller
     }
 
 
-    
+
 
     public function engineedit($id)
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'engine');
         return view('tables.engine_edit', ['engine' => Engine::find($id)]);
     }
 
@@ -220,12 +240,16 @@ class TablesController extends Controller
 
     public function fuel()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'fuel');
         $users = Fuel::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.fuel', compact('users'));
     }
 
     public function fueledit($id)
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'fuel');
         return view('tables.fuel_edit', ['fuel' => Fuel::find($id)]);
     }
 
@@ -259,14 +283,18 @@ class TablesController extends Controller
 
     public function trans()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'tran');
         $users = Transmission::orderBy('id', 'DESC')->paginate($this->per_page);
         return view('tables.trans', compact('users'));
     }
 
-  
+
 
     public function transedit($id)
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'tran');
         return view('tables.trans_edit', ['trans' => Transmission::find($id)]);
     }
 
@@ -296,6 +324,8 @@ class TablesController extends Controller
 
     public function make()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'make');
         $users = Make::orderBy('id', 'DESC')->paginate($this->per_page);
         $country = Country::all();
         return view('tables.make', compact('users', 'country'));
@@ -313,6 +343,8 @@ class TablesController extends Controller
     }
     public function makeedit($id)
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'make');
         return view('tables.make_edit', ['make' => Make::find($id), 'country' => Country::all()]);
     }
     public function makesave(Request $request)
@@ -339,6 +371,8 @@ class TablesController extends Controller
 
     public function model()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'model');
         $users = Models::orderBy('id', 'DESC')->paginate($this->per_page);
         $body = Bodytype::all();
         $make = Make::all();
@@ -360,6 +394,8 @@ class TablesController extends Controller
     }
     public function modeledit($id)
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'model');
         return view('tables.model_edit', ['model' => Models::find($id), 'body' => Bodytype::all(), 'make' => Make::all()]);
     }
 
@@ -373,5 +409,5 @@ class TablesController extends Controller
         return redirect()->to('/tables/model')->with('success', 'success');
     }
 
-   
+
 }

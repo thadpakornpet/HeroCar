@@ -26,7 +26,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:super', 'permission:ALL-Plivilege|VIEW-Only'])->except(['edit','get_amphures','get_dis','update']);
+        $this->middleware(['role:super', 'permission:ALL-Plivilege|VIEW-Only'])->except(['edit','get_amphures','get_dis','update','thai']);
     }
 
     protected $per_page = 10;
@@ -133,6 +133,15 @@ class UserController extends Controller
 
     public function roles(Request $request)
     {
+        $user = User::find($request->id);
+        if(!empty($user)){
+            $userstatus = $user->status;
+            if($userstatus == 2){
+                $user->status = 0;
+                $user->save();
+            }
+        }
+
         if (trim($request->old_role) <> "") {
             $roles = User::find($request->id)->hasRole($request->old_role);
             if ($roles) {
@@ -157,7 +166,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserEditRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::find($id);
         $input = $request->all();
@@ -290,7 +299,6 @@ class UserController extends Controller
                 $user->name = $request->name;
                 $user->password = Hash::make($request->password);
                 $user->typeuser = 'Invite';
-                $user->status = '0';
                 $user->register = date('Y-m-d H:i:s');
                 $user->save();
 
@@ -305,5 +313,11 @@ class UserController extends Controller
         } else {
             return back()->with('error', 'error');
         }
+    }
+
+    public function thai(Request $request){
+        $user = User::find(Auth::user()->id);
+        $user->thai = $request->input('data');
+        $user->save();
     }
 }

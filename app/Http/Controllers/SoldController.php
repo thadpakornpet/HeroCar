@@ -39,6 +39,8 @@ class SoldController extends Controller
 
     public function index()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'sold');
         return view('sold.index', [
             'makes' => Make::all(),
             'trans' => Transmission::all(),
@@ -157,6 +159,8 @@ class SoldController extends Controller
 
     public function list()
     {
+        request()->session()->forget('menu');
+        request()->session()->put('menu', 'listsold');
         if (Auth::user()->hasRole('super')) {
             $sold = Sold::orderBy('id', 'DESC')->where('status', 0)->get();
         } else {

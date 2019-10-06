@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -62,5 +62,6 @@ return [
     'd' => 'แดชบอร์ด',
     'provider' => 'สมัครผ่าน',
     'invite' => 'ได้รับคำเชิญ',
-    'register' => 'ลงทะเบียน'
+    'register' => 'ลงทะเบียน',
+    'country' => 'ประเทศ'
 ];

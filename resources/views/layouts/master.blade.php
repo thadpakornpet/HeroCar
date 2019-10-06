@@ -120,7 +120,6 @@
     <script src="{{ URL::asset('cleanui/components/menu-left/common/menu-left.cleanui.js') }}"></script>
     <script src="{{ URL::asset('cleanui/components/blog/common/blog.cleanui.js') }}"></script>
     <script src="{{ URL::asset('cleanui/components/github/common/github.cleanui.js') }}"></script>
-
 @yield('style')
 <!-- PRELOADER STYLES-->
     <style>
@@ -147,7 +146,7 @@
     <script>
         $(document).ready(function () {
             $('.cui-initial-loading').delay(200).fadeOut(400)
-        })
+        });
     </script>
 </head>
 <body class="cui-config-borderless cui-menu-colorful cui-theme-orange cui-menu-left-shadow">
@@ -184,12 +183,12 @@
                     </li>
 
 
-                    <li class="cui-menu-left-item cui-menu-left-submenu">
+                    <li class="cui-menu-left-item cui-menu-left-submenu @if(Session::get('menu') == 'profile' || Session::get('menu') == 'user' || Session::get('menu') == 'logs') cui-menu-left-submenu-toggled @endif">
                         <a href="javascript: void(0);">
                             <span class="cui-menu-left-icon icmn-users"></span>
                             <span class="cui-menu-left-title">@lang('master.member')</span>
                         </a>
-                        <ul class="cui-menu-left-list">
+                        <ul class="cui-menu-left-list" @if(Session::get('menu') == 'profile' || Session::get('menu') == 'user' || Session::get('menu') == 'logs') style="display: block;" @endif>
                             <li class="cui-menu-left-item @if(Session::get('menu') == 'profile') cui-menu-left-item-active @endif">
                                 <a href="{!! route('users.edit',Auth::user()) !!}">
                                     <span class="cui-menu-left-title">@lang('master.profile')</span>
@@ -215,60 +214,60 @@
                         </ul>
                     </li>
                     @role('super')
-                    <li class="cui-menu-left-item cui-menu-left-submenu">
+                    <li class="cui-menu-left-item cui-menu-left-submenu @if(Session::get('menu') == 'country' || Session::get('menu') == 'body' || Session::get('menu') == 'color' || Session::get('menu') == 'drive' || Session::get('menu') == 'engine' || Session::get('menu') == 'fuel' || Session::get('menu') == 'tran' || Session::get('menu') == 'make' || Session::get('menu') == 'model') cui-menu-left-submenu-toggled @endif">
                         <a href="javascript: void(0);">
                             <span class="cui-menu-left-icon icmn-table"></span>
                             <span class="cui-menu-left-title">@lang('master.car')</span>
                         </a>
-                        <ul class="cui-menu-left-list">
-                            <li class="cui-menu-left-item">
+                        <ul class="cui-menu-left-list" @if(Session::get('menu') == 'country' || Session::get('menu') == 'body' || Session::get('menu') == 'color' || Session::get('menu') == 'drive' || Session::get('menu') == 'engine' || Session::get('menu') == 'fuel' || Session::get('menu') == 'tran' || Session::get('menu') == 'make' || Session::get('menu') == 'model') style="display: block;" @endif>
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'country') cui-menu-left-item-active @endif">
                                 <a href="{{ url('tables/country') }}">
                                     <span class="cui-menu-left-title">@lang('master.country')</span>
                                 </a>
                             </li>
-                            <li class="cui-menu-left-item">
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'body') cui-menu-left-item-active @endif">
                                 <a href="{{ url('tables/body') }}">
                                     <span class="cui-menu-left-title">@lang('master.body')</span>
                                 </a>
                             </li>
-                            <li class="cui-menu-left-item">
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'color') cui-menu-left-item-active @endif">
                                 <a href="{{ url('tables/color') }}">
                                     <span class="cui-menu-left-title">@lang('master.color')</span>
                                 </a>
                             </li>
-                            <li class="cui-menu-left-item">
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'drive') cui-menu-left-item-active @endif">
                                 <a href="{{ url('tables/drive') }}">
                                     <span class="cui-menu-left-title">@lang('master.drive')</span>
                                 </a>
                             </li>
-                            <li class="cui-menu-left-item">
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'engine') cui-menu-left-item-active @endif">
                                 <a href="{{ url('tables/engine') }}">
                                     <span class="cui-menu-left-title">@lang('master.engine')</span>
                                 </a>
                             </li>
-                            <li class="cui-menu-left-item">
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'fuel') cui-menu-left-item-active @endif">
                                 <a href="{{ url('tables/fuel') }}">
                                     <span class="cui-menu-left-title">@lang('master.fuel')</span>
                                 </a>
                             </li>
-                            <li class="cui-menu-left-item">
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'tran') cui-menu-left-item-active @endif">
                                 <a href="{{ url('tables/trans') }}">
                                     <span class="cui-menu-left-title">@lang('master.tran')</span>
                                 </a>
                             </li>
-                            <li class="cui-menu-left-item">
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'make') cui-menu-left-item-active @endif">
                                 <a href="{{ url('tables/make') }}">
                                     <span class="cui-menu-left-title">@lang('master.make')</span>
                                 </a>
                             </li>
-                            <li class="cui-menu-left-item">
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'model') cui-menu-left-item-active @endif">
                                 <a href="{{ url('tables/model') }}">
                                     <span class="cui-menu-left-title">@lang('master.model')</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="cui-menu-left-item">
+                    <li class="cui-menu-left-item @if(Session::get('menu') == 'listsold') cui-menu-left-item-active @endif">
                         <a href="{{ url('sold/manage') }}">
                             <span class="cui-menu-left-icon icmn-stack"></span>
                             <span class="cui-menu-left-title">@lang('master.ms') [ {{ $soldcount }} ]</span>
@@ -303,18 +302,18 @@
                     </li>
                     @endrole
                     @role('owner')
-                    <li class="cui-menu-left-item cui-menu-left-submenu">
+                    <li class="cui-menu-left-item cui-menu-left-submenu @if(Session::get('menu') == 'sold' || Session::get('menu') == 'listsold') cui-menu-left-submenu-toggled @endif">
                         <a href="javascript: void(0);">
                             <span class="cui-menu-left-icon icmn-pen"></span>
                             <span class="cui-menu-left-title">@lang('master.sold')</span>
                         </a>
-                        <ul class="cui-menu-left-list">
-                            <li class="cui-menu-left-item">
+                        <ul class="cui-menu-left-list" @if(Session::get('menu') == 'sold' || Session::get('menu') == 'listsold') style="display: block;" @endif>
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'sold') cui-menu-left-item-active @endif">
                                 <a href="{{ url('/sold') }}">
                                     <span class="cui-menu-left-title">@lang('master.addsold')</span>
                                 </a>
                             </li>
-                            <li class="cui-menu-left-item">
+                            <li class="cui-menu-left-item @if(Session::get('menu') == 'listsold') cui-menu-left-item-active @endif">
                                 <a href="{{ url('sold/list') }}">
                                     <span class="cui-menu-left-title">@lang('master.listsold')</span>
                                 </a>
@@ -326,16 +325,16 @@
                     <li class="cui-menu-left-item">
                         <a href="#">
                             <span class="cui-menu-left-icon icmn-star-full"></span>
-                            <span class="cui-menu-left-title">รายการโปรด</span>
+                            <span class="cui-menu-left-title">@lang('master.fa')</span>
                         </a>
                     </li>
                     @endrole
-                    <li class="cui-menu-left-item cui-menu-left-submenu">
+                    <li class="cui-menu-left-item cui-menu-left-submenu @if(Session::get('menu') == 'mailllogs') cui-menu-left-submenu-toggled @endif">
                         <a href="javascript: void(0);">
                             <span class="cui-menu-left-icon icmn-mail"></span>
                             <span class="cui-menu-left-title">@lang('master.mail')</span>
                         </a>
-                        <ul class="cui-menu-left-list">
+                        <ul class="cui-menu-left-list" @if(Session::get('menu') == 'mailllogs') style="display: block;" @endif>
                             <li class="cui-menu-left-item">
                                 <a href="javascript: void(0);" data-toggle="modal" data-target="#compose">
                                     <span class="cui-menu-left-title">@lang('master.newemail')</span>
@@ -365,17 +364,6 @@
             <div class="cui-topbar">
                 <!-- left aligned items -->
                 <div class="cui-topbar-left">
-                    <div class="cui-topbar-item">
-                        <div class="dropdown">
-                            <a href="" class="dropdown-toggle text-nowrap" data-toggle="dropdown" aria-expanded="false">
-                                <span class="d-none d-xl-inline-block"><strong>@lang('master.language')</strong></span>
-                            </a>
-                            <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" href="{{ url('locale/th') }}">@lang('master.th')</a>
-                                <a class="dropdown-item" href="{{ url('locale/en') }}">@lang('master.en')</a>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
                 <!-- right aligned items -->
@@ -398,6 +386,18 @@
                                       style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cui-topbar-item">
+                        <div class="dropdown cui-topbar-avatar-dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                @lang('login.language')
+                            </a>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" href="{{ url('locale/th') }}"><img src="{{ asset('thailand-flag.gif') }}" class="cui-avatar cui-avatar-border-white cui-avatar-25"> <font color="black">@lang('login.th')</font></a>
+                                <a class="dropdown-item" href="{{ url('locale/en') }}"><img src="{{ asset('300px-Flag_of_the_United_Kingdom.svg.png') }}" class="cui-avatar cui-avatar-border-white cui-avatar-25"> <font color="black">@lang('login.en')</font></a>
                             </div>
                         </div>
                     </div>
