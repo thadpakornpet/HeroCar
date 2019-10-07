@@ -27,29 +27,74 @@
                             </h2>
                         </div>
                     </div>
-                    @role('super')
-                    @if($user->thai == "Y")
-                        <div class="card">
-                            <div class="card-body">
-                                @include('users._form_thai')
-                            </div>
-                        </div>
-                    @else
-                        <div class="card">
-                            <div class="card-body">
-                                @include('users._form_nothai')
-                            </div>
-                        </div>
-                    @endif
 
-                    @can('ALL-Plivilege')
-                        <div class="card">
-                            <div class="card-body">
-                                @include('users._role')
+                    @role('super')
+                    @if(Auth::user()->id == $user->id)
+                        @if($user->thai == "")
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3>
+                                        <center>
+                                            <span class="text-black">@lang('master.thaipeople')</span><br/><br/>
+                                            <button type="button" class="btn btn-outline-success"
+                                                    onclick="address('Y');">@lang('master.yes')</button>
+                                            <button type="button" class="btn btn-outline-danger"
+                                                    onclick="address('N');">@lang('master.no')</button>
+                                        </center>
+                                    </h3>
+                                </div>
                             </div>
-                        </div>
-                    @endcan
-                    @endrole
+                        @else
+                            @if($user->thai == "Y")
+                                <div class="card">
+                                    <div class="card-body">
+                                        @include('users._form_thai')
+                                    </div>
+                                </div>
+                            @else
+                                <div class="card">
+                                    <div class="card-body">
+                                        @include('users._form_nothai')
+                                    </div>
+                                </div>
+                            @endif
+
+                            @role('super')
+                            @can('ALL-Plivilege')
+                                <div class="card">
+                                    <div class="card-body">
+                                        @include('users._role')
+                                    </div>
+                                </div>
+                            @endcan
+                            @endrole
+                        @endif
+
+                    @else
+
+                        @if($user->thai == "Y")
+                            <div class="card">
+                                <div class="card-body">
+                                    @include('users._form_thai')
+                                </div>
+                            </div>
+                        @else
+                            <div class="card">
+                                <div class="card-body">
+                                    @include('users._form_nothai')
+                                </div>
+                            </div>
+                        @endif
+
+                        @can('ALL-Plivilege')
+                            <div class="card">
+                                <div class="card-body">
+                                    @include('users._role')
+                                </div>
+                            </div>
+                        @endcan
+                        @endrole
+                    @endif
 
                     @hasanyrole('owner|user')
                     @if($user->thai == "")

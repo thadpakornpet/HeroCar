@@ -85,13 +85,15 @@
                                                 <a href="{!! route('users.show',$user) !!}" title="รายละเอียด"
                                                    class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                                 @can('ALL-Plivilege')
-                                                    @if(isset($user->getprofiles->address1))
+                                                    @if($user->thai != "" && (isset($user->getprofiles->address1)))
                                                         <a title="แก้ไข" href="{!! route('users.edit',$user) !!}"
                                                            class="btn btn-success btn-sm"><i
                                                                 class="fa fa-pencil"></i></a>
                                                     @endif
-                                                    <a title="ลบ" onclick="deleteRow('{!! $user->id !!}')"
-                                                       class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                    @if($user->status != 1)
+                                                        <a title="ลบ" onclick="deleteRow('{!! $user->id !!}')"
+                                                           class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                    @endif
                                                 @endcan
                                                 @endrole
                                                 <form method="POST" class="hidden" id="formDelete{!! $user->id !!}"

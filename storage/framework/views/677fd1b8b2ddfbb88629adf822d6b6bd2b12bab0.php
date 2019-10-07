@@ -1,10 +1,9 @@
-@extends('layouts.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="cui-layout-content">
         <nav class="cui-breadcrumbs cui-breadcrumbs-bg">
         <span class="font-size-18 d-block">
-            <span class="text-muted">@lang('logs.home') ·</span>
-            <strong>@lang('sold.home')</strong>
+            <span class="text-muted"><?php echo app('translator')->getFromJson('logs.home'); ?> ·</span>
+            <strong><?php echo app('translator')->getFromJson('sold.home'); ?></strong>
         </span>
         </nav>
 
@@ -19,98 +18,98 @@
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th>@lang('sold.id')</th>
-                                        <th>@lang('sold.license')</th>
-                                        <th>@lang('sold.make')</th>
-                                        <th>@lang('sold.model')</th>
-                                        <th>@lang('sold.body')</th>
-                                        <th>@lang('sold.country')</th>
-                                        <th>@lang('sold.price')</th>
-                                        <th>@lang('sold.status')</th>
-                                        <th>@lang('sold.create')</th>
-                                        <th>@lang('sold.update')</th>
+                                        <th><?php echo app('translator')->getFromJson('sold.id'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.license'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.make'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.model'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.body'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.country'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.price'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.status'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.create'); ?></th>
+                                        <th><?php echo app('translator')->getFromJson('sold.update'); ?></th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if(isset($solds))
-                                        @foreach($solds as $sold)
+                                    <?php if(isset($solds)): ?>
+                                        <?php $__currentLoopData = $solds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sold): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
                                                 <td>
-                                                    <button class="btn btn-sm btn-rounded btn-outline-primary" style="display:inline;width: 100px;" onclick="getinfo({{ $sold->id }})";>
-                                                        @lang('sold.detail')
+                                                    <button class="btn btn-sm btn-rounded btn-outline-primary" style="display:inline;width: 100px;" onclick="getinfo(<?php echo e($sold->id); ?>)";>
+                                                        <?php echo app('translator')->getFromJson('sold.detail'); ?>
                                                     </button>
                                                 </td>
-                                                <td style="vertical-align: middle;">{{ $sold->id }}</td>
-                                                <td style="vertical-align: middle;">{{ $sold->licenseno }}</td>
-                                                <td style="vertical-align: middle;">{{ $sold->getNameMake->name }}</td>
-                                                <td style="vertical-align: middle;">{{ $sold->getNameModel->name }}</td>
-                                                <td style="vertical-align: middle;">{{ $sold->getNameBodyType->name }}</td>
-                                                <td style="vertical-align: middle;">@if(str_replace('_', '-', app()->getLocale()) == "th") {{ str_replace('ประเทศ', '', $sold->getNameCountry->name) }} @else {{ str_replace('ประเทศ', '', $sold->getNameCountry->short) }} @endif</td>
-                                                <td style="vertical-align: middle;">{{ number_format($sold->price) }}</td>
+                                                <td style="vertical-align: middle;"><?php echo e($sold->id); ?></td>
+                                                <td style="vertical-align: middle;"><?php echo e($sold->licenseno); ?></td>
+                                                <td style="vertical-align: middle;"><?php echo e($sold->getNameMake->name); ?></td>
+                                                <td style="vertical-align: middle;"><?php echo e($sold->getNameModel->name); ?></td>
+                                                <td style="vertical-align: middle;"><?php echo e($sold->getNameBodyType->name); ?></td>
+                                                <td style="vertical-align: middle;"><?php if(str_replace('_', '-', app()->getLocale()) == "th"): ?> <?php echo e(str_replace('ประเทศ', '', $sold->getNameCountry->name)); ?> <?php else: ?> <?php echo e(str_replace('ประเทศ', '', $sold->getNameCountry->short)); ?> <?php endif; ?></td>
+                                                <td style="vertical-align: middle;"><?php echo e(number_format($sold->price)); ?></td>
                                                 <td>
-                                                    @if($sold->status == 0)
+                                                    <?php if($sold->status == 0): ?>
                                                         <button class="btn btn-warning btn-sm" style="width: 80px;">Pending</button>
-                                                    @endif
-                                                    @if($sold->status == 1)
+                                                    <?php endif; ?>
+                                                    <?php if($sold->status == 1): ?>
                                                         <button class="btn btn-success btn-sm" style="width: 80px;">Active</button>
-                                                    @endif
-                                                    @if($sold->status == 2)
+                                                    <?php endif; ?>
+                                                    <?php if($sold->status == 2): ?>
                                                         <button class="btn btn-primary btn-sm" style="width: 80px;">Sold</button>
-                                                    @endif
-                                                    @if($sold->status == 3)
+                                                    <?php endif; ?>
+                                                    <?php if($sold->status == 3): ?>
                                                         <button class="btn btn-secondary btn-sm" style="width: 80px;">Cancel</button>
-                                                    @endif
-                                                        @if($sold->status == 4)
+                                                    <?php endif; ?>
+                                                        <?php if($sold->status == 4): ?>
                                                             <button class="btn btn-danger btn-sm" style="width: 80px;">Reject</button>
-                                                        @endif
+                                                        <?php endif; ?>
                                                 </td>
-                                                <td style="vertical-align: middle;">{{ $sold->created_at }}</td>
-                                                <td style="vertical-align: middle;">{{ $sold->updated_at }}</td>
+                                                <td style="vertical-align: middle;"><?php echo e($sold->created_at); ?></td>
+                                                <td style="vertical-align: middle;"><?php echo e($sold->updated_at); ?></td>
                                                 <td>
-                                                    @role('owner')
-                                                    @if($sold->status == 0 || $sold->status == 1)
+                                                    <?php if(auth()->check() && auth()->user()->hasRole('owner')): ?>
+                                                    <?php if($sold->status == 0 || $sold->status == 1): ?>
                                                         <div class="cui-topbar-item">
                                                             <div class="dropdown">
                                                                 <button style="width: 80px;" class="btn btn-rounded btn-sm btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                                     Actions
                                                                 </button>
                                                                 <div class="dropdown-menu" role="menu">
-                                                                    <button class="btn btn-rounded btn-sm btn-outline-secondary dropdown-item" onclick="soldedit({{ $sold->id }});">
-                                                                        @lang('sold.edit')
+                                                                    <button class="btn btn-rounded btn-sm btn-outline-secondary dropdown-item" onclick="soldedit(<?php echo e($sold->id); ?>);">
+                                                                        <?php echo app('translator')->getFromJson('sold.edit'); ?>
                                                                     </button>
                                                                     <button class="btn btn-rounded btn-sm btn-outline-danger dropdown-item"
-                                                                            onclick="solddelete({{ $sold->id }});">@lang('sold.delete')
+                                                                            onclick="solddelete(<?php echo e($sold->id); ?>);"><?php echo app('translator')->getFromJson('sold.delete'); ?>
                                                                     </button>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endif
-                                                    @endrole
-                                                    @role('super')
+                                                    <?php endif; ?>
+                                                    <?php endif; ?>
+                                                    <?php if(auth()->check() && auth()->user()->hasRole('super')): ?>
                                                     <div class="cui-topbar-item">
                                                         <div class="dropdown">
                                                             <button style="width: 80px;" class="btn btn-rounded btn-sm btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                                                 Actions
                                                             </button>
                                                             <div class="dropdown-menu" role="menu">
-                                                                <button class="btn btn-rounded btn-sm btn-outline-success dropdown-item" onclick="approve({{ $sold->id }},1);">
-                                                                    @lang('sold.approve')
+                                                                <button class="btn btn-rounded btn-sm btn-outline-success dropdown-item" onclick="approve(<?php echo e($sold->id); ?>,1);">
+                                                                    <?php echo app('translator')->getFromJson('sold.approve'); ?>
                                                                 </button>
-                                                                <button class="btn btn-rounded btn-sm btn-outline-warning dropdown-item" onclick="approve({{ $sold->id }},4);">
-                                                                    @lang('sold.inapprove')
+                                                                <button class="btn btn-rounded btn-sm btn-outline-warning dropdown-item" onclick="approve(<?php echo e($sold->id); ?>,4);">
+                                                                    <?php echo app('translator')->getFromJson('sold.inapprove'); ?>
                                                                 </button>
                                                                 <button class="btn btn-rounded btn-sm btn-outline-danger dropdown-item"
-                                                                        onclick="solddelete({{ $sold->id }});">@lang('sold.delete')
+                                                                        onclick="solddelete(<?php echo e($sold->id); ?>);"><?php echo app('translator')->getFromJson('sold.delete'); ?>
                                                                 </button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @endrole
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
-                                        @endforeach
-                                    @endif
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -120,20 +119,20 @@
             </section>
         </div>
     </div>
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
     <script>
         ;
-        @if(Auth::user()->hasRole('super'))
+        <?php if(Auth::user()->hasRole('super')): ?>
         function approve(a,b) {
             swal(
                 {
-                    title: '@lang("sold.continue")?',
+                    title: '<?php echo app('translator')->getFromJson("sold.continue"); ?>?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonClass: 'btn-danger',
-                    confirmButtonText: '@lang("sold.confirm")',
-                    cancelButtonText: '@lang("sold.cancel")',
+                    confirmButtonText: '<?php echo app('translator')->getFromJson("sold.confirm"); ?>',
+                    cancelButtonText: '<?php echo app('translator')->getFromJson("sold.cancel"); ?>',
                     closeOnConfirm: false,
                     closeOnCancel: false,
                 },
@@ -145,12 +144,12 @@
                             }
                         });
                         $.ajax({
-                            url: "{{ url('sold/approve') }}",
+                            url: "<?php echo e(url('sold/approve')); ?>",
                             data: {a: a,b:b},
                             type: 'POST',
                             success: function () {
                                 swal({
-                                    title: '@lang("sold.success")!',
+                                    title: '<?php echo app('translator')->getFromJson("sold.success"); ?>!',
                                     type: 'success',
                                     confirmButtonClass: 'btn-success',
                                 });
@@ -158,7 +157,7 @@
                             },
                             error: function () {
                                 swal({
-                                    title: '@lang("sold.error")',
+                                    title: '<?php echo app('translator')->getFromJson("sold.error"); ?>',
                                     type: 'error',
                                     confirmButtonClass: 'btn-danger',
                                 })
@@ -166,7 +165,7 @@
                         })
                     } else {
                         swal({
-                            title: '@lang("sold.error")',
+                            title: '<?php echo app('translator')->getFromJson("sold.error"); ?>',
                             type: 'error',
                             confirmButtonClass: 'btn-danger',
                         })
@@ -174,14 +173,14 @@
                 },
             )
         }
-        @endif
+        <?php endif; ?>
         ;
         function soldedit(id) {
             if(id){
-                window.location = "{{ url('sold/edit') }}" + '/' +id;
+                window.location = "<?php echo e(url('sold/edit')); ?>" + '/' +id;
             } else {
                 swal({
-                    title: '@lang("sold.not")',
+                    title: '<?php echo app('translator')->getFromJson("sold.not"); ?>',
                     type: 'error',
                     confirmButtonClass: 'btn-danger',
                 });
@@ -190,14 +189,14 @@
         ;
         function getinfo(id) {
             if(id){
-                @if(Auth::user()->hasRole('super'))
-                window.open("{{ url('sold/detail') }}" + '/' +id, '_blank');
-                @else
-                window.location = "{{ url('sold/detail') }}" + '/' +id;
-                @endif
+                <?php if(Auth::user()->hasRole('super')): ?>
+                window.open("<?php echo e(url('sold/detail')); ?>" + '/' +id, '_blank');
+                <?php else: ?>
+                window.location = "<?php echo e(url('sold/detail')); ?>" + '/' +id;
+                <?php endif; ?>
             } else {
                 swal({
-                    title: '@lang("sold.not")',
+                    title: '<?php echo app('translator')->getFromJson("sold.not"); ?>',
                     type: 'error',
                     confirmButtonClass: 'btn-danger',
                 });
@@ -207,12 +206,12 @@
         function solddelete(id) {
             swal(
                 {
-                    title: '@lang("sold.continue")?',
+                    title: '<?php echo app('translator')->getFromJson("sold.continue"); ?>?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonClass: 'btn-danger',
-                    confirmButtonText: '@lang("sold.confirm")',
-                    cancelButtonText: '@lang("sold.cancel")',
+                    confirmButtonText: '<?php echo app('translator')->getFromJson("sold.confirm"); ?>',
+                    cancelButtonText: '<?php echo app('translator')->getFromJson("sold.cancel"); ?>',
                     closeOnConfirm: false,
                     closeOnCancel: false,
                 },
@@ -224,12 +223,12 @@
                             }
                         });
                         $.ajax({
-                            url: "{{ url('sold/delete') }}",
+                            url: "<?php echo e(url('sold/delete')); ?>",
                             data: {id: id},
                             type: 'POST',
                             success: function () {
                                 swal({
-                                    title: '@lang("sold.success")!',
+                                    title: '<?php echo app('translator')->getFromJson("sold.success"); ?>!',
                                     type: 'success',
                                     confirmButtonClass: 'btn-success',
                                 });
@@ -237,7 +236,7 @@
                             },
                             error: function () {
                                 swal({
-                                    title: '@lang("sold.error")',
+                                    title: '<?php echo app('translator')->getFromJson("sold.error"); ?>',
                                     type: 'error',
                                     confirmButtonClass: 'btn-danger',
                                 })
@@ -245,7 +244,7 @@
                         })
                     } else {
                         swal({
-                            title: '@lang("sold.not")',
+                            title: '<?php echo app('translator')->getFromJson("sold.not"); ?>',
                             type: 'error',
                             confirmButtonClass: 'btn-danger',
                         })
@@ -265,8 +264,8 @@
                     orderable: false,
                 },
             ],
-            lengthMenu: [[20, 50, 100, -1], [20, 50, 100, '@if(str_replace('_', '-', app()->getLocale()) == "th") ทั้งหมด @else All @endif']],
-            @if(str_replace('_', '-', app()->getLocale()) == "th")
+            lengthMenu: [[20, 50, 100, -1], [20, 50, 100, '<?php if(str_replace('_', '-', app()->getLocale()) == "th"): ?> ทั้งหมด <?php else: ?> All <?php endif; ?>']],
+            <?php if(str_replace('_', '-', app()->getLocale()) == "th"): ?>
             oLanguage: {
                 "sLengthMenu": "แสดง _MENU_ เร็คคอร์ด ต่อหน้า",
                 "sZeroRecords": "ไม่เจอข้อมูลที่ค้นหา",
@@ -281,7 +280,9 @@
                     "sLast": "หน้าสุดท้าย"
                 }
             }
-            @endif
+            <?php endif; ?>
         })
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\HeroCar\resources\views/sold/list.blade.php ENDPATH**/ ?>
